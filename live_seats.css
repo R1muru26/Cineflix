@@ -1,0 +1,397 @@
+/* Live Seat Availability Map Styles */
+.heat-map-legend {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legend-title {
+  font-weight: bold;
+  color: #c79f5e;
+  margin-right: 10px;
+}
+
+.legend-items {
+  display: flex;
+  gap: 15px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.heat-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.heat-box.cold {
+  background: rgba(76, 175, 80, 0.3);
+}
+
+.heat-box.warm {
+  background: rgba(255, 152, 0, 0.3);
+}
+
+.heat-box.hot {
+  background: rgba(244, 67, 54, 0.3);
+}
+
+/* Seat Quality Styles */
+.seat-quality-legend {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.seat-demo {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid;
+}
+
+.seat-demo.premium {
+  background: rgba(199, 159, 94, 0.3);
+  border-color: #c79f5e;
+}
+
+.seat-demo.good {
+  background: rgba(76, 175, 80, 0.3);
+  border-color: #4CAF50;
+}
+
+.seat-demo.standard {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced Seat Styles */
+.seat.premium {
+  background: rgba(199, 159, 94, 0.2) !important;
+  border-color: #c79f5e !important;
+}
+
+.seat.good {
+  background: rgba(76, 175, 80, 0.2) !important;
+  border-color: #4CAF50 !important;
+}
+
+.seat.standard {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.seat.hot-seat {
+  box-shadow: 0 0 10px rgba(255, 100, 100, 0.5) !important;
+  border-color: rgba(255, 100, 100, 0.8) !important;
+}
+
+.seat.hot-seat.available:hover {
+  background: rgba(255, 100, 100, 0.3) !important;
+  transform: scale(1.05);
+}
+
+/* Best Seats Button */
+.best-seats-btn {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.best-seats-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+/* Seat Notifications */
+.seat-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.seat-notification.success {
+  background: #4CAF50;
+  color: white;
+}
+
+.seat-notification.info {
+  background: #2196F3;
+  color: white;
+}
+
+/* ── Smart Seat Insights Panel ───────────────────────────────────── */
+.smart-seat-tracker {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: rgba(40, 40, 40, 0.6);
+  border: 1px solid rgba(199, 159, 94, 0.18);
+  overflow: hidden;
+}
+
+.smart-seat-tracker-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 0.75rem;
+}
+
+.smart-seat-tracker-title {
+  font-weight: 800;
+  color: #c79f5e;
+}
+
+.smart-seat-tracker-subtitle {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.65);
+  font-weight: 600;
+}
+
+.smart-seat-tracker-modes {
+  margin-bottom: 0.8rem;
+}
+
+.smart-seat-mode-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.smart-seat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.85);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s, border-color 0.15s, background 0.15s;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.smart-seat-chip input {
+  accent-color: #c79f5e;
+}
+
+.smart-seat-chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(199,159,94,0.45);
+  background: rgba(199,159,94,0.12);
+}
+
+.smart-seat-feedback {
+  font-size: 0.93rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 650;
+  margin-bottom: 0.75rem;
+}
+
+.smart-seat-waitlist-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.smart-seat-preferences {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  font-weight: 650;
+  line-height: 1.4;
+  background: rgba(0,0,0,0.16);
+  border-radius: 10px;
+  border: 1px dashed rgba(199,159,94,0.22);
+  padding: 10px 12px;
+}
+
+.smart-seat-wow {
+  margin-top: 0.8rem;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(199,159,94,0.18);
+  padding: 10px 12px;
+}
+
+.smart-seat-wow-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.smart-seat-wow-label {
+  font-weight: 900;
+  color: rgba(255,255,255,0.92);
+  font-size: 0.92rem;
+}
+
+.smart-seat-wow-value {
+  color: #c79f5e;
+  font-weight: 900;
+  font-size: 0.95rem;
+}
+
+.smart-seat-wow-bar {
+  height: 10px;
+  width: 100%;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.07);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.smart-seat-wow-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(91,155,213,0.95), rgba(199,159,94,0.95));
+  transition: width 260ms ease;
+}
+
+.wow-burst {
+  animation: cfWowBurst 650ms ease-out;
+}
+
+@keyframes cfWowBurst {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.02); }
+  55% { transform: scale(0.99); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 480px) {
+  .smart-seat-tracker {
+    padding: 0.85rem 0.8rem;
+  }
+  .smart-seat-tracker-title {
+    font-size: 1.02rem;
+  }
+  .smart-seat-feedback {
+    font-size: 0.9rem;
+  }
+  .smart-seat-chip {
+    padding: 7px 10px;
+    font-size: 0.8rem;
+  }
+  .smart-seat-wow-top {
+    align-items: flex-start;
+  }
+  .smart-seat-wow-value {
+    font-size: 0.88rem;
+  }
+}
+
+/* ── Heatmap layers (more granular than just "hot") ─────────────── */
+.seat.heat-cold {
+  background: rgba(76, 175, 80, 0.20) !important;
+}
+.seat.heat-warm {
+  background: rgba(255, 152, 0, 0.18) !important;
+}
+.seat.heat-hot {
+  background: rgba(244, 67, 54, 0.16) !important;
+}
+
+/* ── Suggested alternatives ──────────────────────────────────────── */
+.seat.suggested {
+  outline: 2px solid rgba(38, 222, 129, 0.55) !important;
+  box-shadow: 0 0 0 4px rgba(38, 222, 129, 0.12) !important;
+}
+
+.seat.suggested-better {
+  animation: cfPulseSuggest 1.2s ease-in-out infinite;
+  background: rgba(38, 222, 129, 0.18) !important;
+}
+
+@keyframes cfPulseSuggest {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* Enhanced Seat Grid */
+.seats-grid {
+  position: relative;
+}
+
+.seat {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.seat[data-quality="premium"]::after {
+  content: "⭐";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 10px;
+  color: #c79f5e;
+}
+
+.seat[data-quality="good"]::after {
+  content: "✓";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 10px;
+  color: #4CAF50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heat-map-legend,
+  .seat-quality-legend {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .legend-items {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .legend-item {
+    font-size: 0.8em;
+  }
+  
+  .heat-box,
+  .seat-demo {
+    width: 15px;
+    height: 15px;
+  }
+}

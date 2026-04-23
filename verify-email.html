@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email | CineFlix</title>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body.has-background { overflow: hidden; }
+        main { display:flex; align-items:center; justify-content:center; min-height: calc(100vh - 80px); }
+        @media (max-width: 768px) { main { min-height: calc(100vh - 72px); } }
+        .login-container { transform: translateY(-56px); }
+        .otp-input-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .otp-input {
+            width: 50px;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+            transition: all 0.3s;
+        }
+        .otp-input:focus {
+            outline: none;
+            border-color: hsl(37, 48%, 57%);
+            box-shadow: 0 0 0 3px hsl(37, 48%, 57%);
+        }
+        .resend-link {
+            color: #c79f5e;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 15px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .resend-link:hover {
+            text-decoration: underline;
+        }
+        .resend-link.disabled {
+            color: #999;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .countdown {
+            color: #666;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .success-message {
+            color: #28a745;
+            font-size: 14px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .error-message {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="has-background">
+    <div class="background-blur"></div>
+
+    <header class="site-header">
+        <a class="logo" href="homepage.php">
+            <img src="logo/newlogo1.png" alt="CineFlix Logo">
+        </a>
+        <nav class="top-nav">
+            <ul>
+                <li><a class="nav-btn" href="status.php">Status</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <img src="logo/C_1_-removebg-preview.png" alt="CineFlix Logo" class="login-logo">
+            <h2>Verify Your Email</h2>
+            <p style="color: #666; font-size: 14px; text-align: center; margin-bottom: 20px;">
+                We've sent a 6-digit verification code to<br>
+                <strong id="email-display"></strong>
+            </p>
+            
+            <form id="verify-form" action="verify-email.php" method="POST">
+                <input type="hidden" name="email" id="email-input">
+                
+                <div class="otp-input-container">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" required>
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" required>
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" required>
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" required>
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" required>
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" required>
+                </div>
+                
+                <input type="hidden" name="otp" id="otp-value">
+                
+                <p id="error-message" class="error-message" style="display:none;"></p>
+                <p id="success-message" class="success-message" style="display:none;"></p>
+                
+                <button type="submit" class="login-btn" id="verify-btn">Verify Email</button>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="#" id="resend-link" class="resend-link">Resend Code</a>
+                    <p class="countdown" id="countdown"></p>
+                </div>
+                
+                <a href="login.html" class="signup-link" style="margin-top: 20px; display: block;">Back to Login</a>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email') || '';
+            
+            if (email) {
+                document.getElementById('email-input').value = email;
+                document.getElementById('email-display').textContent = email;
+            }
+            
+            const otpInputs = document.querySelectorAll('.otp-input');
+            const otpValueInput = document.getElementById('otp-value');
+            const form = document.getElementById('verify-form');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+            const resendLink = document.getElementById('resend-link');
+            const countdownEl = document.getElementById('countdown');
+            
+            // OTP input handling
+            otpInputs.forEach((input, index) => {
+                input.addEventListener('input', function(e) {
+                    const value = e.target.value.replace(/[^0-9]/g, '');
+                    e.target.value = value;
+                    
+                    if (value && index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                    
+                    updateOTPValue();
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                });
+                
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const paste = (e.clipboardData || window.clipboardData).getData('text');
+                    const digits = paste.replace(/[^0-9]/g, '').slice(0, 6);
+                    
+                    digits.split('').forEach((digit, i) => {
+                        if (otpInputs[i]) {
+                            otpInputs[i].value = digit;
+                        }
+                    });
+                    
+                    if (digits.length === 6) {
+                        otpInputs[5].focus();
+                    } else if (digits.length > 0) {
+                        otpInputs[digits.length - 1].focus();
+                    }
+                    
+                    updateOTPValue();
+                });
+            });
+            
+            function updateOTPValue() {
+                const otp = Array.from(otpInputs).map(input => input.value).join('');
+                otpValueInput.value = otp;
+            }
+            
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const otp = otpValueInput.value;
+                if (otp.length !== 6) {
+                    showError('Please enter the complete 6-digit code');
+                    return;
+                }
+                
+                // Submit via AJAX
+                const formData = new FormData(form);
+                
+                fetch('verify-email.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showSuccess('Email verified successfully! Redirecting...');
+                        setTimeout(() => {
+                            window.location.href = 'login.html?verified=success';
+                        }, 1500);
+                    } else {
+                        showError(data.message || 'Invalid verification code. Please try again.');
+                        // Clear OTP inputs
+                        otpInputs.forEach(input => input.value = '');
+                        otpInputs[0].focus();
+                    }
+                })
+                .catch(error => {
+                    showError('An error occurred. Please try again.');
+                });
+            });
+            
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            }
+            
+            function showSuccess(message) {
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+            }
+            
+            // Resend OTP
+            let resendCooldown = 60; // 60 seconds cooldown
+            let cooldownInterval = null;
+            
+            function updateResendCooldown() {
+                if (resendCooldown > 0) {
+                    countdownEl.textContent = `Resend code in ${resendCooldown} seconds`;
+                    resendLink.classList.add('disabled');
+                    resendCooldown--;
+                } else {
+                    countdownEl.textContent = '';
+                    resendLink.classList.remove('disabled');
+                    if (cooldownInterval) {
+                        clearInterval(cooldownInterval);
+                        cooldownInterval = null;
+                    }
+                }
+            }
+            
+            // Start cooldown on page load
+            updateResendCooldown();
+            cooldownInterval = setInterval(updateResendCooldown, 1000);
+            
+            resendLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (resendLink.classList.contains('disabled')) {
+                    return;
+                }
+                
+                if (!email) {
+                    showError('Email not found. Please sign up again.');
+                    return;
+                }
+                
+                // Request resend
+                fetch('resend-otp.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'email=' + encodeURIComponent(email)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showSuccess('Verification code resent! Please check your email.');
+                        // Reset cooldown
+                        resendCooldown = 60;
+                        updateResendCooldown();
+                        cooldownInterval = setInterval(updateResendCooldown, 1000);
+                    } else {
+                        showError(data.message || 'Failed to resend code. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    showError('An error occurred. Please try again.');
+                });
+            });
+            
+            // Check for error parameter
+            const urlParams2 = new URLSearchParams(window.location.search);
+            const error = urlParams2.get('error');
+            if (error) {
+                showError(decodeURIComponent(error));
+            }
+        });
+    </script>
+</body>
+</html>
+

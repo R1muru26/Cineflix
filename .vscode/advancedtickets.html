@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movies | CineFlix</title>
+  <link rel="stylesheet" href="advancedtickets.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="has-background">
+  <div class="background-blur"></div>
+  
+  <header class="site-header">
+    <a class="logo" href="homepage.html">
+      <img src="logo/newlogo1.png" alt="CineFlix Logo">
+    </a>
+    <nav class="top-nav">
+      <ul>
+        <li class="dropdown">
+          <span class="nav-btn" role="button" tabindex="0">Movies</span>
+          <ul class="dropdown-menu">
+            <li><a href="nowshowing.html">Now Showing</a></li>
+            <li><a href="comingsoon.html">Coming Soon</a></li>
+            <li><a href="advancedtickets.html">Advanced Tickets</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-btn" href="status.html">Status</a></li>
+        <li><a class="nav-btn" href="events.html">Events</a></li>
+        <li><a class="nav-btn" href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="movie-section">
+
+         <h2 class="section-title">Advanced Tickets</h2>
+         
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/xYcgQMxQwmk?autoplay=1">
+        <img src="advancedtickets/Hamnet.jpg" alt="Hamnet">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Hamnet</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+            <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/R2Xubj7lazE?autoplay=1">
+        <img src="advancedtickets/Wicked For Good.jpg" alt="Wicked: For Good">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Wicked: For Good</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/eej34Jw7woA?autoplay=1">
+        <img src="advancedtickets/Return to Silent Hill.jpg" alt="Return to Silent Hill">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Return to Silent Hill</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/R4wiXj9NmEE?autoplay=1">
+        <img src="advancedtickets/Send help.jpg" alt="Send Help">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Send Help</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/EOwTdTZA8D8?autoplay=1">
+        <img src="advancedtickets/28 years later.jpg" alt="28 Years Later: The Bone Temple">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">28 Years Later: The Bone Temple</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+             <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+  <div class="video-modal" id="videoModal">
+    <div class="video-container">
+      <iframe id="trailerFrame" src="" frameborder="0" allowfullscreen></iframe>
+      <span class="close">&times;</span>
+    </div>
+  </div>
+    <script src="script.js"></script>
+</body>
+</html>

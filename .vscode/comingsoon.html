@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CineFlix</title>
+  <link rel="stylesheet" href="comingsoon.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="has-background">
+  <header class="site-header">
+    <a class="logo" href="homepage.html">
+      <img src="logo/newlogo1.png" alt="CineFlix Logo">
+    </a>
+    <nav class="top-nav">
+      <ul>
+        <li class="dropdown">
+          <span class="nav-btn" role="button" tabindex="0">Movies</span>
+          <ul class="dropdown-menu">
+            <li><a href="nowshowing.html">Now Showing</a></li>
+            <li><a href="comingsoon.html">Coming Soon</a></li>
+            <li><a href="advancedtickets.html">Advanced Tickets</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-btn" href="status.html">Status</a></li>
+        <li><a class="nav-btn" href="events.html">Events</a></li>
+        <li><a class="nav-btn" href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+<div class="movie-section">
+
+         <h2 class="section-title">Coming Soon</h2>
+         
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/48CtX6OgU3s?autoplay=1">
+        <img src="coming soon movies/the housemaid 2025.jpg" alt="The Housemaid">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">The Housemaid</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+            <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/BjkIOU5PhyQ?autoplay=1">
+        <img src="coming soon movies/Zootopia 2.jpg" alt="Zootopia 2">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Zootopia 2</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/Ma1x7ikpid8?autoplay=1">
+        <img src="coming soon movies/avatar fire & ash.jpg" alt="Avatar : Fire & Ash">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Avatar : Fire & Ash</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/uogrgIasYcA?autoplay=1">
+        <img src="coming soon movies/now you see me.jpg" alt="Now You See Me : Now You Don`t">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Now You See Me : Now You Don`t</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/dSDpoobO6yM?autoplay=1">
+        <img src="coming soon movies/FNAF2.jpg" alt="Five Nights at Freddy's 2 ">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Five Nights at Freddy's 2 </span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+             <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/w7t2gyIwvDo?autoplay=1">
+        <img src="coming soon movies/spongebob.jpg" alt="Search for Square Pants">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Search for Square Pants</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Trailer Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-container">
+      <iframe id="trailerFrame" src="" frameborder="0" allowfullscreen></iframe>
+      <span class="close">&times;</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign Up | CineFlix</title>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body.has-background { overflow: hidden; }
+        main { display:flex; align-items:center; justify-content:center; min-height: calc(100vh - 80px); }
+        @media (max-width: 768px) { main { min-height: calc(100vh - 72px); } }
+        .login-container { transform: translateY(-56px); }
+    </style>
+</head>
+
+<body class="has-background">
+    <div class="background-blur"></div>
+
+    <header class="site-header">
+        <a class="logo" href="homepage.php">
+            <img src="logo/newlogo1.png" alt="CineFlix Logo">
+        </a>
+        <nav class="top-nav">
+            <ul>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </li>
+                <li><a class="nav-btn" href="status.php">Status</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <img src="logo/C_1_-removebg-preview.png" alt="CineFlix Logo" class="login-logo">
+            <h2>Sign Up to CineFlix</h2>
+            <form action="signup.php" method="POST">
+                <!-- Full Name -->
+                <input type="text" name="name" class="login-input" placeholder="Full Name" required>
+
+                <!-- Username -->
+                <input type="text" name="username" class="login-input" placeholder="Username" required>
+
+                <!-- Email -->
+                <input type="email" name="email" class="login-input" placeholder="Email" required>
+
+                <!-- Mobile Number (optional) -->
+                <input type="tel" name="phone" class="login-input" placeholder="Mobile Number (optional)">
+
+                <!-- Password -->
+                <input type="password" name="password" class="login-input" placeholder="Password" required>
+
+                <!-- Confirm Password -->
+                <input type="password" name="password_confirm" class="login-input" placeholder="Confirm Password" required>
+
+                <!-- Submit Button -->
+                <button type="submit" name="signup" class="login-btn">Sign Up</button>
+
+                <!-- Link to login page -->
+                <a href="login.html" class="signup-link">Already have an account? Login</a>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

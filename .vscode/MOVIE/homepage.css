@@ -1,0 +1,603 @@
+/* === Base Styles === */
+body {
+  color: #fff;
+  font-family: 'Poppins', sans-serif, Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* container: fixed 5-column grid (up to 5 posters per row) */
+#container {
+  display: grid;
+  grid-template-columns: repeat(5, 260px);
+  gap: 60px;
+  justify-content: center;
+  align-items: start;
+  position: relative;
+  padding-top:0px; /* adjust this number until the text is visible */
+  
+
+  /* Create internal spacing */
+  padding: 100px 30px 30px 30px; /* ⬅ top, right, bottom, left */
+
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  color: #fff;
+
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+#container {
+  position: relative;
+  text-align: center;
+  padding-top: 60px; /* space above the posters */
+}
+
+.section-title {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);  
+  font-size: 25px;
+  font-weight: bold;
+  color: #c79f5e;
+}
+
+.movie-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 50px; /* creates space below the title */
+}
+
+
+
+
+  /* poster cards inside the container */
+  .poster-card {
+    width: 260px;            /* narrower card width */
+    height: 390px;           /* taller card height */
+    margin: 0;               /* spacing handled by grid gap */
+    border-radius: 8px;
+    overflow: hidden;        /* clip the poster image */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    background: #111;        /* fallback while image loads */
+  }
+
+  /* overlay that appears on hover */
+  .poster-card { position: relative; }
+
+  .poster-card .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
+    color: #fff;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 180ms ease, transform 180ms ease;
+    transform: translateY(6px);
+  }
+
+  .poster-card:hover .overlay,
+  .poster-card:focus-within .overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .overlay-content {
+    width: 100%;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-sizing: border-box;
+  }
+
+  .poster-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  }
+
+  .poster-btn {
+    background: rgba(199,159,94,0.95);
+    color: #111;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .poster-card img {
+    width: 100%;
+    height: 100%;
+    max-width: 260px;       /* prevent image from rendering larger than card */
+    max-height: 390px;      /* ensure image doesn't exceed card height */
+    object-fit: cover;      /* cover and crop uniformly */
+    display: block;
+    transition: transform 300ms cubic-bezier(.2,.8,.2,1), filter 260ms ease;
+    will-change: transform;
+  }
+
+  /* subtle zoom on hover / focus */
+  .poster-card:hover img,
+  .poster-card:focus-within img {
+    transform: scale(1.04);
+  }
+
+  /* Utility: visually-hidden but available to screen readers */
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:visited {
+  color: inherit;
+}
+
+/* Background */
+.has-background {
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('background/newbackground.png') center/cover fixed no-repeat;
+}
+
+/* === Header === */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  background: rgba(0,0,0,0.8);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  z-index: 1000;
+}
+
+
+
+
+
+
+/* === Spotlight Section === */
+
+.spotlight {
+  position: relative;
+  width: 100%;
+  height: 780px;
+  overflow: hidden;
+
+  margin: -25px auto 80px auto;
+  max-width: 2600px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+  
+}
+
+.spotlight-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+
+
+.spotlight-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+background: linear-gradient(to bottom, rgba(0,0,0,0.3) 50%, rgba(0,0,0,1) 100%);
+  z-index: 1;
+}
+
+.spotlight-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.spotlight-content {
+  position: relative;
+  top: 50%;
+  left: 80px;
+  transform: translateY(-50%);
+  color: #fff;
+  max-width: 550px;
+  animation: fadeInUp 1s ease forwards;
+  z-index: 2;
+  filter: brightness(100%);
+}
+
+
+
+.spotlight-content h4 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #c79f5e;
+  margin-bottom: 10px;
+}
+
+.spotlight-content h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 15px;
+}
+
+.spotlight-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #e4e4e4;
+}
+
+
+
+
+.spotlight-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.watch-btn,
+.details-btn {
+  border: none;
+  padding: 10px 25px;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.watch-btn {
+  background: #c79f5e;
+  color: #111;
+}
+
+.watch-btn:hover {
+  background: #e0b96f;
+}
+
+.details-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.details-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Navigation Arrows */
+.spotlight-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 3;
+}
+
+.spotlight-btn:hover {
+  background: rgba(199, 159, 94, 0.9);
+  color: #111;
+}
+
+.spotlight-btn.prev { left: 20px; }
+.spotlight-btn.next { right: 20px; }
+
+
+
+
+/* Animation for text */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === Logo === */
+.logo img {
+  height: 260px;
+  width: auto;
+  display: block;
+}
+
+/* === Navigation (top-level only) === */
+.top-nav > ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-right: 40px;
+  gap: 2rem;
+}
+
+/* Prevent nested <ul> (dropdown) from using flex */
+.top-nav ul ul {
+  display: block;
+}
+
+/* === Navigation Buttons === */
+.nav-btn {
+  padding: 0.7rem 1.2rem;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: rgb(39, 39, 39);
+  color: #c79f5e;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(199, 159, 94, 0.5);
+}
+
+/* === Dropdown Container === */
+.dropdown {
+  position: relative;
+}
+
+/* === Dropdown Menu === */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px); /* drop below */
+  left: 0;
+  background: rgba(20, 20, 20, 0.98);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+  z-index: 1001;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown items stacked vertically */
+.dropdown-menu li {
+  display: block;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.18s ease, color 0.18s ease, padding-left 0.18s;
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #c79f5e;
+  padding-left: 1.6rem;
+}
+
+.dropdown-menu li + li {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* === Main Content Padding === */
+main {
+  padding-top: 100px;
+  padding-bottom: 20rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* === Responsive === */
+@media (max-width: 640px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 0.5rem 1rem;
+  }
+
+  .top-nav > ul {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  main {
+    padding-top: 140px;
+  }
+}
+
+/* Responsive breakpoints to prevent overflow: reduce columns as viewport shrinks */
+@media (max-width: 1700px) {
+  #container {
+    grid-template-columns: repeat(4, 260px);
+  }
+}
+
+@media (max-width: 1300px) {
+  #container {
+    grid-template-columns: repeat(3, 260px);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 1000px) {
+  #container {
+    grid-template-columns: repeat(2, 260px);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 700px) {
+  /* single-column layout on small screens; cards resize to viewport */
+  #container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .poster-card {
+    width: 100%;            /* fill the available space */
+    max-width: 420px;       /* keep a reasonable maximum */
+    height: auto;           /* allow height to scale */
+    aspect-ratio: 335 / 370;
+    margin: 0 auto;
+  }
+  .poster-card img {
+    height: 100%;
+    max-width: none;
+  }
+}
+
+
+/* === Trailer Modal === */
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.video-container {
+  position: relative;
+  width: 80%;
+  max-width: 800px;
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 450px;
+  border-radius: 10px;
+}
+
+.video-modal .close {
+  position: absolute;
+  top: -40px;
+  right: -10px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.trailer-btn {
+  cursor: pointer;
+  border: none;
+}
+
+.movie-section {
+  display: grid;
+  grid-template-columns: repeat(5, 260px);
+  gap: 60px;
+  justify-content: center;
+  align-items: start;
+  position: relative;
+  padding: 100px 30px 30px 30px;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  color: #fff;
+  max-width: 1600px;
+  margin: 60px auto; /* <— this adds space between sections */
+}
+
+.movie-section .section-title {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 25px;
+  font-weight: bold;
+  color: #c79f5e;
+}

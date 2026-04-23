@@ -1,0 +1,49 @@
+{
+	"folders": [
+		{
+			"path": "../.vscode"
+		},
+		{
+			"path": "../advancedtickets"
+		},
+		{
+			"path": "../api"
+		},
+		{
+			"path": "../background"
+		},
+		{
+			"path": "../coming soon movies"
+		},
+		{
+			"path": "../data"
+		},
+		{
+			"path": "../food&drinks"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../logo"
+		},
+		{
+			"path": "../movies posters"
+		},
+		{
+			"path": "../PaymentLogo"
+		},
+		{
+			"path": "../spolight"
+		},
+		{
+			"path": "../uploads"
+		},
+		{
+			"path": "../vendor"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5502
+	}
+}

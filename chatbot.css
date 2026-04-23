@@ -1,0 +1,15 @@
+/* ============================================================
+   CineFlix Chatbot — chatbot.css
+   NOTE: This file is intentionally minimal.
+   All panel/widget styles are injected by chatbot.js to avoid
+   conflicts with the homepage stylesheet.
+   ============================================================ */
+
+/* Only the toggle button needs to be here as a fallback */
+.cf-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483647;
+  font-family: 'Poppins', sans-serif;
+}

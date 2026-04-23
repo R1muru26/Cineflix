@@ -1,0 +1,153 @@
+/* === Shared base (minimal) - full styles come from homepage.css or page-specific CSS === */
+/* Responsive header, logo, and nav for pages that use common.css + homepage.css */
+
+/* Global Responsive Base */
+:root {
+  --primary-gold: #c79f5e;
+  --bg-dark: #13141a;
+  --header-height: 80px;
+}
+
+/* Base resets for responsiveness */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Fluid typography base */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  html { font-size: 14px; }
+}
+
+/* Header Responsiveness */
+.site-header {
+  height: 100px;
+  padding: 0 3rem;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(10px);
+  box-sizing: border-box !important;
+}
+
+.site-header .logo img {
+  height: 72px;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  display: block;
+}
+
+/* Navigation Responsiveness */
+.top-nav ul {
+  display: flex !important;
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 2rem;
+  align-items: center;
+}
+
+.top-nav li {
+  list-style: none !important;
+  display: block !important;
+}
+
+@media (max-width: 1023px) {
+  .site-header .logo img {
+    height: 58px;
+  }
+}
+
+/* Mobile: compact header and logo */
+@media (max-width: 767px) {
+  .site-header {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: 76px;
+    padding: 0 1rem;
+  }
+  
+  .top-nav {
+    width: auto;
+    order: unset;
+  }
+  
+  .top-nav > ul {
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    padding-right: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide scrollbar for clean look */
+  }
+  
+  .top-nav > ul::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+}
+
+.nav-btn {
+  padding: 0.7rem 1.2rem;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+}
+
+.nav-btn:hover {
+  background: rgb(39, 39, 39);
+  color: #c79f5e;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(199, 159, 94, 0.5);
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+  .site-header {
+    height: 64px;
+  }
+  .site-header .logo img {
+    height: 44px;
+  }
+  .top-nav > ul {
+    gap: 0.5rem;
+  }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movies | CineFlix</title>
+  <link rel="stylesheet" href="login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body.has-background { overflow:hidden; }
+    main { display:flex; align-items:center; justify-content:center; min-height: calc(100vh - 80px); }
+    @media (max-width: 768px) { main { min-height: calc(100vh - 72px); } }
+    .error-message { color:#ff6b6b; background:rgba(255,107,107,0.12); border:1px solid rgba(255,107,107,0.35); padding:10px 12px; border-radius:8px; margin:8px 0 0; text-align:center; font-size:14px; }
+  </style>
+</head>
+
+<body class="has-background">
+  <div class="background-blur"></div>
+  
+  <header class="site-header">
+    <a class="logo" href="homepage.php">
+      <img src="logo/newlogo1.png" alt="CineFlix Logo">
+    </a>
+    <nav class="top-nav">
+      <ul>
+          <ul class="dropdown-menu">
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="login-container">
+  <img src="logo/C_1_-removebg-preview.png" alt="CineFlix Logo" class="login-logo">
+                 <h2>Log In to CineFlix</h2>
+  <form action="login.php" method="POST">
+    <input type="email" name="email" class="login-input" placeholder="Email" required>
+    <input type="password" name="password" class="login-input" placeholder="Password" required>
+    <div id="loginError" class="error-message" style="display:none;"></div>
+    <button type="submit" class="login-btn">Log In</button>
+    <a href="forgot-password.php" class="forgot-password">Forgot Password?</a>
+    <a href="signup.html" class="signup-link">Sign Up</a>
+  </form>
+
+    </div>
+  </main>
+<script>
+  (function(){
+    var params = new URLSearchParams(window.location.search);
+    var msg = params.get('error');
+    if (msg) {
+      var box = document.getElementById('loginError');
+      if (box) { box.textContent = msg; box.style.display = 'block'; }
+    }
+  })();
+</script>
+</body>
+</html>

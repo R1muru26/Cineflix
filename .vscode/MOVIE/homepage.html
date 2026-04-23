@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CineFlix</title>
+  <link rel="stylesheet" href="homepage.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="has-background">
+  <header class="site-header">
+    <a class="logo" href="homepage.html">
+      <img src="logo/newlogo1.png" alt="CineFlix Logo">
+    </a>
+    <nav class="top-nav">
+      <ul>
+        <li class="dropdown">
+          <span class="nav-btn" role="button" tabindex="0">Movies</span>
+          <ul class="dropdown-menu">
+            <li><a href="nowshowing.html">Now Showing</a></li>
+            <li><a href="comingsoon.html">Coming Soon</a></li>
+            <li><a href="advancedtickets.html">Advanced Tickets</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-btn" href="status.html">Status</a></li>
+        <li><a class="nav-btn" href="events.html">Events</a></li>
+        <li><a class="nav-btn" href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+
+
+<!-- === Spotlight Section === -->
+<section class="spotlight">
+  <div class="spotlight-slide active" style="background-image: url('spolight/chainsawmanV2.jpg');">
+    <div class="spotlight-content">
+      <h4>#1 Spotlight</h4>
+      <h1>Chainsaw Man</h1>
+      <p>
+       Denji is literally love bombed by the Bomb Devil Reze, a Soviet human-devil hybrid contracted by the Gun Devil to steal Denji's heart
+      </p>
+      <div class="spotlight-buttons">
+  <button class="watch-btn" data-trailer="https://www.youtube.com/embed/GJ1jrCnm-t8?autoplay=1">▶ Watch Now</button>
+
+        <button class="details-btn">Details</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="spotlight-slide" style="background-image: url('spolight/demonslayerV2.jpg');">
+    <div class="spotlight-content">
+      <h4>#2 Spotlight</h4>
+      <h1>Demon Slayer : Infinity Castle</h1>
+      <p>
+        The Demon Slayer Corps are drawn into the Infinity Castle, where Tanjiro and the Hashira face 
+        terrifying Upper Rank demons in a desperate fight as the final battle against Muzan Kibutsuji begins.
+      </p>
+      <div class="spotlight-buttons">
+        <button class="watch-btn" data-trailer="https://www.youtube.com/embed/x7uLutVRBfI?autoplay=1">▶ Watch Now</button>
+
+        <button class="details-btn">Details</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="spotlight-slide"  style="background-image: url('spolight/black\ phone\ 2.jpg');">
+    <div class="spotlight-content">
+      <h4>#3 Spotlight</h4>
+      <h1>Black Phone 2</h1>
+      <p>
+        As Finn, now 17, struggles with life after his captivity, his sister begins receiving calls in her 
+        dreams from the black phone and seeing disturbing visions of three boys being stalked at a winter camp known as Alpine Lake.
+      </p>
+      <div class="spotlight-buttons">
+<button class="watch-btn" data-trailer="https://www.youtube.com/embed/DdR-gzFZoDk?autoplay=1">▶ Watch Now</button>
+        <button class="details-btn">Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <button class="spotlight-btn prev">&#10094;</button>
+  <button class="spotlight-btn next">&#10095;</button>
+</section>
+
+
+<div class="movie-section">
+
+         <h2 class="section-title">Now Showing</h2>
+         
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/GJ1jrCnm-t8?autoplay=1">
+        <img src="movies posters/chainsawman.jpg" alt="Chainsaw Man">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Chainsaw Man</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+            <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/x7uLutVRBfI?autoplay=1">
+        <img src="movies posters/demonslayer.jpg" alt="Demon Slayer">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Demon Slayer</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/wPosLpgMtTY?autoplay=1">
+        <img src="movies posters/Spider-Man 3 (2007).jpg" alt="Spider-Man 3">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Spider-Man 3</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/DdR-gzFZoDk?autoplay=1">
+        <img src="movies posters/The Black Phone 2.jpg" alt="The Black Phone 2">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">The Black Phone 2</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/-sAOWhvheK8?autoplay=1">
+        <img src="movies posters/Thunderbolts.jpg" alt="Thunderbolts">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Thunder bolts</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+             <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/P9s-FBvB2y4?autoplay=1">
+        <img src="movies posters/A Minecraft Movie.jpg" alt="A Minecraft Movie">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">A Minecraft Movie</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/Mb9CCnM-B4Q?autoplay=1">
+        <img src="movies posters/IT chapter 2.jpg" alt="IT chapter 2">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">IT Chapter 2</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/Q5yWqmYU0Hs?autoplay=1">
+        <img src="movies posters/The Long Walk.jpg" alt="The Long Walk">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">The Long Walk</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/YShVEXb7-ic?autoplay=1">
+        <img src="movies posters/Tron Ares.jpg" alt="Tron Ares">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Tron Ares</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/1pHDWnXmK7Y?autoplay=1">
+        <img src="movies posters/Captain America.jpg" alt="Brave New World">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Brave New World</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+<div class="movie-section">
+
+         <h2 class="section-title">Coming Soon</h2>
+         
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/48CtX6OgU3s?autoplay=1">
+        <img src="coming soon movies/the housemaid 2025.jpg" alt="The Housemaid">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">The Housemaid</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+            <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/BjkIOU5PhyQ?autoplay=1">
+        <img src="coming soon movies/Zootopia 2.jpg" alt="Zootopia 2">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Zootopia 2</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/Ma1x7ikpid8?autoplay=1">
+        <img src="coming soon movies/avatar fire & ash.jpg" alt="Avatar : Fire & Ash">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Avatar : Fire & Ash</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/uogrgIasYcA?autoplay=1">
+        <img src="coming soon movies/now you see me.jpg" alt="Now You See Me : Now You Don`t">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Now You See Me : Now You Don`t</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/dSDpoobO6yM?autoplay=1">
+        <img src="coming soon movies/FNAF2.jpg" alt="Five Nights at Freddy's 2 ">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Five Nights at Freddy's 2 </span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+             <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/w7t2gyIwvDo?autoplay=1">
+        <img src="coming soon movies/spongebob.jpg" alt="Search for Square Pants">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Search for Square Pants</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+<div class="movie-section">
+
+         <h2 class="section-title">Advanced Tickets</h2>
+         
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/xYcgQMxQwmk?autoplay=1">
+        <img src="advancedtickets/Hamnet.jpg" alt="Hamnet">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Hamnet</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+            <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/R2Xubj7lazE?autoplay=1">
+        <img src="advancedtickets/Wicked For Good.jpg" alt="Wicked: For Good">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Wicked: For Good</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/eej34Jw7woA?autoplay=1">
+        <img src="advancedtickets/Return to Silent Hill.jpg" alt="Return to Silent Hill">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Return to Silent Hill</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/R4wiXj9NmEE?autoplay=1">
+        <img src="advancedtickets/Send help.jpg" alt="Send Help">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">Send Help</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+                        <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="poster-card" data-trailer="https://www.youtube.com/embed/EOwTdTZA8D8?autoplay=1">
+        <img src="advancedtickets/28 years later.jpg" alt="28 Years Later: The Bone Temple">
+        <div class="overlay">
+          <div class="overlay-content">
+            <span class="poster-title">28 Years Later: The Bone Temple</span>
+            <button class="poster-btn trailer-btn">Trailer</button>
+             <button class="poster-btn trailer-btn">View</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+  <!-- Trailer Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-container">
+      <iframe id="trailerFrame" src="" frameborder="0" allowfullscreen></iframe>
+      <span class="close">&times;</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  
+</body>
+</html>

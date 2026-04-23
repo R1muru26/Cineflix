@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sign Up | CineFlix</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body.has-background { overflow: hidden; }
+        main { 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            min-height: calc(100vh - 80px); 
+            padding: 2rem 1rem;
+        }
+        .login-container { 
+            transform: translateY(-56px); 
+            max-width: 400px; 
+            width: 90%; 
+            box-sizing: border-box;
+        }
+        .login-input { 
+            width: 100%; 
+            box-sizing: border-box; 
+        }
+        
+        /* Desktop - Large (1920px+) */
+        @media (min-width: 1920px) {
+            .login-container { max-width: 450px; padding: 2.5rem; }
+            .login-input { padding: 1.2rem; font-size: 1.05rem; }
+            .login-btn { padding: 1.2rem; font-size: 1.05rem; }
+        }
+        
+        /* Desktop - Standard (1400px-1919px) */
+        @media (min-width: 1400px) and (max-width: 1919px) {
+            .login-container { max-width: 420px; padding: 2.25rem; }
+        }
+        
+        /* Laptop (1024px-1399px) */
+        @media (min-width: 1024px) and (max-width: 1399px) {
+            .login-container { max-width: 400px; padding: 2rem; }
+        }
+        
+        /* Tablet (768px-1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .login-container { max-width: 380px; padding: 1.75rem; }
+            main { min-height: calc(100vh - 72px); }
+        }
+        
+        /* Password strength indicator */
+        .password-strength-wrapper { margin-bottom: 0; }
+        .password-strength-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+        .password-strength-fill {
+            height: 100%;
+            width: 0;
+            border-radius: 2px;
+            transition: width 0.2s, background 0.2s;
+        }
+        .password-strength-fill.weak { width: 33%; background: #ff6b6b; }
+        .password-strength-fill.medium { width: 66%; background: #feca57; }
+        .password-strength-fill.strong { width: 100%; background: #26de81; }
+        .password-strength-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 4px;
+        }
+        
+        /* Mobile (below 768px) */
+        @media (max-width: 767px) {
+            main { min-height: calc(100vh - 72px); padding: 1rem; }
+            .login-container { 
+                max-width: 100%; 
+                width: 95%; 
+                padding: 1.5rem; 
+                transform: translateY(-20px);
+            }
+            .login-input { font-size: 16px; }
+        }
+    </style>
+</head>
+
+<body class="has-background">
+    <div class="background-blur"></div>
+
+    <header class="site-header">
+        <a class="logo" href="homepage.php">
+            <img src="logo/newlogo1.png" alt="CineFlix Logo">
+        </a>
+        <nav class="top-nav">
+            <ul>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </li>
+                <li><a class="nav-btn" href="status.php">Status</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <img src="logo/C_1_-removebg-preview.png" alt="CineFlix Logo" class="login-logo">
+            <h2>Sign Up to CineFlix</h2>
+            <form action="signup.php" method="POST">
+                <!-- Surname -->
+                <input type="text" name="surname" class="login-input" placeholder="Surname" required pattern="[A-Za-z\s'-]{1,50}" title="Surname must contain only letters, spaces, hyphens, or apostrophes">
+
+                <!-- First Name -->
+                <input type="text" name="first_name" class="login-input" placeholder="First Name" required pattern="[A-Za-z\s'-]{1,50}" title="First Name must contain only letters, spaces, hyphens, or apostrophes">
+
+                <!-- Middle Initial -->
+                <input type="text" name="middle_initial" class="login-input" placeholder="Middle Initial (Optional)" maxlength="1" pattern="[A-Za-z]" title="Middle Initial must be a single letter">
+
+                <!-- Username -->
+                <input type="text" name="username" class="login-input" placeholder="Username" required>
+
+                <!-- Email -->
+                <input type="email" name="email" class="login-input" placeholder="Email" required>
+
+                <!-- Mobile Number (optional) -->
+                <input type="tel" name="phone" class="login-input" placeholder="Mobile Number (optional)">
+
+                <!-- Password -->
+                <div class="password-strength-wrapper">
+                    <input type="password" name="password" id="signup-password" class="login-input" placeholder="Password" required minlength="8">
+                    <div class="password-strength-bar" aria-hidden="true">
+                        <div class="password-strength-fill" id="password-strength-fill"></div>
+                    </div>
+                    <p class="password-strength-label" id="password-strength-label">Strength: <span>—</span></p>
+                </div>
+
+                <!-- Confirm Password -->
+                <input type="password" name="password_confirm" class="login-input" placeholder="Confirm Password" required minlength="8">
+                <p id="password-error" style="display:none;color:#ff6b6b;font-size:0.85rem;margin-top:6px;text-align:left;">Passwords do not match.</p>
+
+                <p id="form-error" style="display:none;color:#ff6b6b;font-size:0.9rem;margin:12px 0;text-align:center;"></p>
+
+                <!-- Submit Button -->
+                <button type="submit" name="signup" class="login-btn">Sign Up</button>
+
+                <!-- Link to login page -->
+                <a href="login.html" class="signup-link">Already have an account? Login</a>
+            </form>
+        </div>
+    </main>
+    <script>
+        (function passwordStrength() {
+            var pwd = document.getElementById('signup-password');
+            var fill = document.getElementById('password-strength-fill');
+            var label = document.getElementById('password-strength-label');
+            if (!pwd || !fill || !label) return;
+            function evaluate(p) {
+                if (!p || p.length === 0) return { level: 0, text: '—' };
+                var score = 0;
+                if (p.length >= 8) score++;
+                if (p.length >= 12) score++;
+                if (/[a-z]/.test(p) && /[A-Z]/.test(p)) score++;
+                if (/\d/.test(p)) score++;
+                if (/[^A-Za-z0-9]/.test(p)) score++;
+                if (score <= 2) return { level: 1, text: 'Weak' };
+                if (score <= 4) return { level: 2, text: 'Medium' };
+                return { level: 3, text: 'Strong' };
+            }
+            pwd.addEventListener('input', function() {
+                var r = evaluate(this.value);
+                fill.className = 'password-strength-fill';
+                if (r.level > 0) fill.classList.add(r.level === 1 ? 'weak' : r.level === 2 ? 'medium' : 'strong');
+                label.querySelector('span').textContent = r.text;
+            });
+        })();
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const passwordInput = form.querySelector('input[name="password"]');
+            const confirmInput = form.querySelector('input[name="password_confirm"]');
+            const passwordError = document.getElementById('password-error');
+            const formError = document.getElementById('form-error');
+
+            function showPasswordError(message) {
+                if (passwordError) {
+                    passwordError.textContent = message;
+                    passwordError.style.display = 'block';
+                }
+            }
+
+            function hidePasswordError() {
+                if (passwordError) {
+                    passwordError.style.display = 'none';
+                }
+            }
+
+            function showFormError(message) {
+                if (formError) {
+                    formError.textContent = message;
+                    formError.style.display = 'block';
+                }
+            }
+
+            function hideFormError() {
+                if (formError) {
+                    formError.style.display = 'none';
+                }
+            }
+
+            if (form && passwordInput && confirmInput) {
+                form.addEventListener('submit', function(event) {
+                    hideFormError();
+                    if (passwordInput.value !== confirmInput.value) {
+                        event.preventDefault();
+                        showPasswordError('Passwords do not match.');
+                        confirmInput.focus();
+                    } else {
+                        hidePasswordError();
+                    }
+                });
+
+                confirmInput.addEventListener('input', hidePasswordError);
+                passwordInput.addEventListener('input', hidePasswordError);
+            }
+
+            const params = new URLSearchParams(window.location.search);
+            const errorCode = params.get('error');
+            if (errorCode) {
+                switch (errorCode) {
+                    case 'password_mismatch':
+                        showPasswordError('Passwords do not match.');
+                        break;
+                    case 'password_length':
+                        showFormError('Password must be at least 8 characters long.');
+                        break;
+                    case 'required':
+                        showFormError('All required fields must be filled out.');
+                        break;
+                    case 'duplicate':
+                        showFormError('Email or username already exists.');
+                        break;
+                    case 'server':
+                        showFormError('Unable to process your sign up right now. Please try again later.');
+                        break;
+                    case 'invalid_surname':
+                        showFormError('Invalid surname. Please use only letters, spaces, hyphens, or apostrophes.');
+                        break;
+                    case 'invalid_firstname':
+                        showFormError('Invalid first name. Please use only letters, spaces, hyphens, or apostrophes.');
+                        break;
+                    case 'invalid_middle':
+                        showFormError('Middle initial must be a single letter.');
+                        break;
+                    default:
+                        showFormError('Unable to complete sign up. Please try again.');
+                }
+            }
+
+            if (errorCode) {
+                window.history.replaceState(null, '', window.location.pathname);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+/* === Base Styles === */
+body {
+  color: #fff; /* Sets text color to white */
+  font-family: 'Poppins', sans-serif; /* Uses Poppins font for all text */
+  margin: 0; /* Removes default browser margin */
+}
+
+a {
+  color: inherit; /* Makes links use the same color as parent text */
+  text-decoration: none; /* Removes underline from links */
+}
+a:visited {
+  color: inherit; /* Keeps link color consistent after being visited */
+}
+
+/* === Background === */
+.has-background {
+  /* Applies a dark overlay and sets a fixed background image */
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+              url('background/newbackground.png') center/cover fixed no-repeat;
+}
+
+/* === Header === */
+.site-header {
+  position: fixed; /* Keeps header fixed at top */
+  top: 0; /* Aligns it to the top edge */
+  left: 0; /* Stretches from left */
+  right: 0; /* To right side */
+  height: 72px; /* Sets header height */
+  display: flex; /* Uses flexbox for layout */
+  justify-content: space-between; /* Spaces logo and nav apart */
+  align-items: center; /* Vertically centers contents */
+  padding: 0 1.5rem; /* Adds horizontal padding */
+  background: rgba(0,0,0,0.8); /* Semi-transparent black background */
+  border-bottom: 1px solid rgba(255,255,255,0.1); /* Subtle white line at bottom */
+  z-index: 1000; /* Keeps header on top of other elements */
+}
+
+/* === Logo (header) === */
+.logo img {
+  height: 260px; /* Sets logo image height */
+  width: auto; /* Keeps original image aspect ratio */
+  display: block; /* Removes inline spacing */
+}
+
+/* === Navigation (top-level only) === */
+.top-nav > ul {
+  display: flex; /* Displays nav items in a row */
+  list-style: none; /* Removes bullets */
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+  padding-right: 40px; /* Adds right spacing */
+  gap: 2rem; /* Adds spacing between nav buttons */
+}
+
+/* Prevent nested <ul> (dropdown) from using flex */
+.top-nav ul ul {
+  display: block; /* Ensures dropdown menus stack vertically */
+}
+
+/* === Navigation Buttons === */
+.nav-btn {
+  padding: 0.7rem 1.2rem; /* Adds inner spacing */
+  background: rgba(255,255,255,0.08); /* Semi-transparent background */
+  color: #fff; /* White text color */
+  text-decoration: none; /* No underline */
+  border-radius: 30px; /* Makes buttons rounded */
+  font-size: 1rem; /* Sets font size */
+  font-weight: 600; /* Makes text bold */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animation */
+}
+
+.nav-btn:hover {
+  background: rgb(39, 39, 39); /* Darkens background on hover */
+  color: #c79f5e; /* Changes text color to gold */
+  transform: translateY(-5px); /* Moves button upward slightly */
+  box-shadow: 0 4px 12px rgba(199, 159, 94, 0.5); /* Adds glowing shadow */
+}
+
+/* === Dropdown Container === */
+.dropdown {
+  position: relative; /* Needed for absolute-positioned dropdown menu */
+}
+
+/* === Dropdown Menu === */
+.dropdown-menu {
+  position: absolute; /* Positions dropdown relative to parent */
+  top: calc(100% + 8px); /* Places it just below the button */
+  left: 0; /* Aligns with left edge */
+  background: rgba(20, 20, 20, 0.98); /* Dark background */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6); /* Adds shadow for depth */
+  list-style: none; /* Removes bullets */
+  padding: 0.5rem 0; /* Adds vertical padding */
+  margin: 0; /* Removes default margin */
+  min-width: 200px; /* Sets minimum dropdown width */
+  opacity: 0; /* Hidden by default */
+  visibility: hidden; /* Prevents click when hidden */
+  transform: translateY(-6px); /* Slightly moves up for transition */
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s; /* Smooth fade/slide */
+  z-index: 1001; /* Keeps above header */
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  opacity: 1; /* Makes it visible */
+  visibility: visible; /* Enables interaction */
+  transform: translateY(0); /* Slides it into position */
+}
+
+/* Dropdown items stacked vertically */
+.dropdown-menu li {
+  display: block; /* Each item on new line */
+}
+
+.dropdown-menu li a {
+  display: block; /* Makes entire area clickable */
+  padding: 0.75rem 1.25rem; /* Adds inner spacing */
+  color: #ffffff; /* White text */
+  text-decoration: none; /* Removes underline */
+  font-size: 0.95rem; /* Slightly smaller font */
+  font-weight: 500; /* Medium weight */
+  transition: background 0.18s ease, color 0.18s ease, padding-left 0.18s; /* Smooth hover effects */
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(199, 56, 56, 0.04); /* Subtle hover background */
+  color: #c79f5e; /* Gold text */
+  padding-left: 1.6rem; /* Slight slide effect on hover */
+}
+
+.dropdown-menu li + li {
+  border-top: 1px solid rgba(255, 255, 255, 0.04); /* Line between items */
+}
+
+/* === Main Content Padding === */
+main {
+  padding-top: 100px; /* Pushes content below fixed header */
+}
+
+/* === Login Form Styles === */
+.login-container {
+  max-width: 350px; /* Sets max width for login box */
+  margin: 180px auto 0 auto; /* Centers box horizontally with top spacing */
+  padding: 2rem; /* Inner spacing */
+  background: rgba(30, 31, 39, 0.4); /* Dark semi-transparent box */
+  border-radius: 10px; /* Rounded corners */
+
+  /* Frosted glass blur effect */
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); /* Drop shadow */
+  color: #c99a54; /* Gold text color */
+  text-align: center; /* Centers all text */
+  font-family: 'Poppins', sans-serif; /* Ensures consistent font */
+  font-weight: 500; /* Medium text weight */
+}
+
+.login-logo {
+  display: block; /* Centers using margin */
+  margin: 0 auto 20px auto; /* Center horizontally + add bottom space */
+  max-width: 80px; /* Logo width */
+  height: auto; /* Keeps ratio */
+  transform: scale(2.5);
+  transform-origin: center;
+}
+
+.login-container h2 {
+  color: #c99a54; /* Gold heading */
+  font-weight: 600; /* Bold text */
+  margin-bottom: 20px; /* Space below title */
+  font-size: 1.8rem; /* Heading size */
+}
+
+/* === Input Fields === */
+.login-input {
+  width: 80%; /* Input field width */
+  padding: 1rem; /* Inner spacing */
+  margin-bottom: 15px; /* Space below each field */
+  border-radius: 6px; /* Rounded edges */
+  border: none; /* No borders */
+  background: rgba(255, 255, 255, 0.15); /* Semi-transparent background */
+  color: #eee; /* Light text */
+  font-size: 1rem; /* Font size */
+  outline: none; /* Removes blue outline on focus */
+  transition: background 0.3s; /* Smooth background change */
+}
+
+.login-input::placeholder {
+  color: #bbb; /* Light gray placeholder text */
+}
+
+.login-input:focus {
+  background: rgba(255, 255, 255, 0.25); /* Lightens background when focused */
+}
+
+/* === Login Button === */
+.login-btn {
+  width: 100%; /* Full width button */
+  padding: 1rem; /* Inner spacing */
+  background-color: #c99a54; /* Gold background */
+  border: none; /* No border */
+  border-radius: 6px; /* Rounded corners */
+  color: white; /* White text */
+  font-size: 1rem; /* Text size */
+  font-weight: 600; /* Bold text */
+  cursor: pointer; /* Pointer on hover */
+  transition: background-color 0.3s; /* Smooth color change */
+  box-shadow: 0 3px 8px rgba(201, 154, 84, 0.7); /* Adds glowing shadow */
+}
+
+.login-btn:hover {
+  background-color: #b58742; /* Darker gold on hover */
+  box-shadow: 0 4px 12px rgba(181, 135, 66, 0.85); /* Stronger shadow on hover */
+}
+
+/* === Links for Forgot Password and Sign Up === */
+.forgot-password,
+.signup-link {
+  display: block; /* Each on a new line */
+  margin-top: 50px; /* Space above */
+  color: #ddd; /* Light gray text */
+  font-size: 0.9rem; /* Smaller text */
+  cursor: pointer; /* Pointer cursor */
+  transition: color 0.3s; /* Smooth hover color */
+}
+
+.forgot-password:hover,
+.signup-link:hover {
+  color: #c99a54; /* Turns gold on hover */
+  text-decoration: underline; /* Adds underline on hover */
+}
+
+/* === Responsive === */
+@media (max-width: 640px) {
+  .site-header {
+    flex-direction: column; /* Stack header items vertically */
+    align-items: flex-start; /* Align to left */
+    height: auto; /* Allow flexible height */
+    padding: 0.5rem 1rem; /* Smaller padding */
+  }
+
+  .top-nav > ul {
+    flex-wrap: wrap; /* Allow nav items to wrap */
+    gap: 0.6rem; /* Smaller spacing between buttons */
+  }
+
+  main {
+    padding-top: 140px; /* More top padding for mobile */
+  }
+
+  .login-container {
+    padding: 1.5rem; /* Reduce inner spacing */
+    width: 90%; /* Take most of screen width */
+  }
+
+  .error-message {
+    color: red; /* Red error text */
+    font-size: 14px; /* Smaller text */
+    margin-top: 10px; /* Space above */
+  }
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Status | CineFlix</title>
+  <link rel="stylesheet" href="status.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="has-background">
+  <div class="background-blur"></div>
+  
+  <header class="site-header">
+    <a class="logo" href="homepage.html">
+      <img src="logo/newlogo1.png" alt="CineFlix Logo">
+    </a>
+    <nav class="top-nav">
+      <ul>
+        <li><a class="nav-btn" href="status.html">Status</a></li>
+        <li><a class="nav-btn" href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="page-title">Booking Status</h1>
+      
+      <div class="card">
+        <div class="tabs">
+          <div class="tabs-list">
+            <button class="tab-trigger active" data-tab="paid">Paid Tickets</button>
+            <button class="tab-trigger" data-tab="cancelled">Cancelled/Refunded</button>
+          </div>
+
+          <!-- Paid Tickets Tab -->
+          <div class="tab-content active" id="paid">
+            <div id="paid-tickets-container">
+              <!-- Paid tickets will be loaded from localStorage -->
+            </div>
+            
+            <div class="empty-state" id="paid-empty" style="display: none;">
+              <p>No paid tickets found.</p>
+              <a href="homepage.html" class="btn btn-primary">Browse Movies</a>
+            </div>
+          </div>
+
+          <!-- Cancelled/Refunded Tab -->
+          <div class="tab-content" id="cancelled">
+            <div id="cancelled-tickets-container">
+              <!-- Sample cancelled ticket -->
+              <div class="ticket-card">
+                <div class="ticket-header">
+                  <div>
+                    <h3 class="ticket-title">Inception Re-screening</h3>
+                    <p class="ticket-subtitle">Original Date: March 10, 2024 | Cancelled on: March 8, 2024</p>
+                  </div>
+                  <span class="badge badge-danger">Cancelled</span>
+                </div>
+                <div class="ticket-body">
+                  <p class="ticket-info"><strong>Reason:</strong> Schedule conflict</p>
+                  <p class="ticket-info"><strong>Refund Status:</strong> Processed</p>
+                  <p class="ticket-price">₱500.00 (Refunded)</p>
+                </div>
+                <div class="ticket-footer">
+                  <button class="btn btn-secondary">View Details</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="cta-card">
+              <h3 class="cta-title">Need to Cancel a Booking?</h3>
+              <p class="cta-description">If you need to cancel your booking, you can request a refund up to 24 hours before the showtime. Refunds are typically processed within 3-5 business days.</p>
+              <button class="btn btn-danger">Request Cancellation</button>
+            </div>
+          </div>
+  </main>
+
+  <!-- Ticket Modal -->
+  <div class="ticket-modal" id="ticket-modal" style="display:none;">
+    <div class="ticket-modal-backdrop" id="ticket-modal-backdrop"></div>
+    <div class="ticket-modal-card" role="dialog" aria-modal="true" aria-labelledby="ticket-modal-title">
+      <div class="ticket-modal-header">
+        <h3 id="ticket-modal-title">Your Ticket</h3>
+        <span class="ticket-modal-id" id="ticket-modal-id"></span>
+      </div>
+      <div class="ticket-modal-body">
+        <div class="ticket-modal-info">
+          <div><span class="label">Movie</span><span id="tm-movie"></span></div>
+          <div><span class="label">Date & Time</span><span id="tm-datetime"></span></div>
+          <div><span class="label">Cinema</span><span id="tm-cinema"></span></div>
+          <div><span class="label">Seats</span><span id="tm-seats"></span></div>
+<<<<<<< HEAD
+          <div><span class="label">Tickets</span><span id="tm-qty"></span></div>
+          <div class="total"><span class="label">Total</span><span id="tm-total"></span></div>
+        </div>
+        <div class="ticket-modal-qr"><div id="ticket-modal-qrcode"></div></div>
+=======
+          <div id="tm-addons-row" style="display: none;"><span class="label">Food & Drinks</span><span id="tm-addons"></span></div>
+          <div><span class="label">Tickets</span><span id="tm-qty"></span></div>
+          <div class="total"><span class="label">Total</span><span id="tm-total"></span></div>
+          
+          <!-- Payment Information Section -->
+          <div id="tm-payment-section" class="ticket-modal-payment" style="display: none;">
+            <h4>Payment Information</h4>
+            <div><span class="label">Cardholder Name</span><span id="tm-cardholder"></span></div>
+            <div><span class="label">Card Number</span><span id="tm-cardnumber"></span></div>
+            <div><span class="label">Expiry Date</span><span id="tm-expiry"></span></div>
+            <div><span class="label">Payment Method</span><span id="tm-paymentmethod"></span></div>
+            <div><span class="label">Payment Date</span><span id="tm-paymentdate"></span></div>
+          </div>
+        </div>
+        <div class="ticket-modal-qr">
+          <div id="ticket-modal-qrcode"></div>
+          <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 8px; text-align: center;">Scan QR Code for Entry</p>
+        </div>
+>>>>>>> 39461e1 (bago)
+      </div>
+      <div class="ticket-modal-actions">
+        <button class="btn btn-secondary" id="ticket-modal-print">Print</button>
+        <button class="btn btn-primary" id="ticket-modal-close-2">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="status.js"></script>
+</body>
+</html>

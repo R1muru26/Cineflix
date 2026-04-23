@@ -1,0 +1,1403 @@
+/* === Base Styles === */ /* Section header: global/base rules */
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+body { /* base document element */
+  color: #fff; /* default text color: white */
+  font-family: 'Poppins', sans-serif; /* default font stack */
+  margin: 0; /* remove default body margin */
+  overflow-x: hidden;
+} /* end body */
+
+a { /* anchor defaults */
+  color: inherit; /* links inherit color (no blue) */
+  text-decoration: none; /* remove underline */
+} /* end a */
+
+.has-background { /* page wrapper with background image + overlay */
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('background/newbackground.png') center/cover fixed no-repeat; /* image with dark overlay */
+  min-height: 100vh; /* ensure it covers full viewport height */
+} /* end .has-background */
+
+/* === Booking Layout Fixes === */
+main {
+  padding-top: 120px;
+  padding-bottom: 2rem;
+  min-height: calc(100vh - 100px);
+}
+
+/* Remove Redundant Site Header Styles (now in common.css) */
+
+/* Background */
+.has-background {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background/newbackground.png') center/cover fixed no-repeat;
+  min-height: 100vh;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 767px) {
+  main {
+    padding-top: 80px;
+  }
+}
+
+.container { /* content wrapper with max width */
+  max-width: 1000px; /* readable line length */
+  margin: 0 auto; /* center horizontally */
+  padding: 0 1.5rem; /* horizontal padding */
+} /* end .container */
+
+.page-title { /* page heading style */
+  font-size: 2.5rem; /* large title */
+  font-weight: 600; /* semi-bold */
+  margin-bottom: 2rem; /* spacing below */
+  color: #c79f5e; /* accent color */
+  text-align: center; /* centered title */
+} /* end .page-title */
+
+/* === Card === */ /* reusable card panel used throughout the page */
+.card { /* card container */
+  background: rgba(20, 20, 20, 0.95); /* dark translucent panel */
+  border: 1px solid rgba(199, 159, 94, 0.2); /* subtle warm border */
+  border-radius: 16px; /* rounded corners */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); /* depth shadow */
+  padding: 2rem; /* internal spacing */
+  margin-bottom: 2rem; /* spacing between cards */
+} /* end .card */
+
+/* === Booking Steps === */ /* stepper sections that show/hide during booking */
+.booking-step { /* each step is hidden by default */
+  display: none; /* hide until active */
+  animation: fadeIn 0.4s ease; /* small entrance animation */
+} /* end .booking-step */
+
+.booking-step.active { /* active step becomes visible */
+  display: block; /* show the active step */
+} /* end .booking-step.active */
+
+@keyframes fadeIn { /* simple fade + translate animation */
+  from { /* start state */
+    opacity: 0; /* invisible */
+    transform: translateY(20px); /* slightly lower */
+  } /* end from */
+  to { /* end state */
+    opacity: 1; /* fully visible */
+    transform: translateY(0); /* back to normal */
+  } /* end to */
+} /* end @keyframes fadeIn */
+
+/* === Movie Info === */ /* movie poster + details block */
+.movie-info { /* horizontal layout for poster + details */
+  display: flex; /* side-by-side */
+  gap: 1.5rem; /* spacing between poster and details */
+  margin-bottom: 2rem; /* spacing below section */
+  padding-bottom: 2rem; /* inner bottom padding */
+  border-bottom: 1px solid rgba(199, 159, 94, 0.2); /* separator */
+} /* end .movie-info */
+
+.movie-poster-small { /* small poster thumbnail */
+  width: 120px; /* fixed width */
+  height: 180px; /* fixed height */
+  border-radius: 8px; /* rounded corners */
+  background-size: cover; /* cover the box */
+  background-position: center; /* center the image */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* subtle shadow */
+} /* end .movie-poster-small */
+
+.movie-details h2 { /* movie title */
+  color: #c79f5e; /* accent color for title */
+  margin: 0 0 0.5rem 0; /* reset margins except small bottom gap */
+  font-size: 1.8rem; /* title size */
+} /* end .movie-details h2 */
+
+.movie-details p { /* supporting movie info */
+  color: rgba(255, 255, 255, 0.7); /* slightly muted white */
+  margin: 0; /* no extra margin */
+} /* end .movie-details p */
+
+/* === Schedule Section === */ /* choose date and show available schedules */
+.schedule-section { /* wrapper for schedule controls */
+  margin-bottom: 2rem; /* spacing below */
+} /* end .schedule-section */
+
+.section-subtitle { /* subtitle style for small headings */
+  color: #c79f5e; /* accent */
+  font-size: 1.3rem; /* size */
+  margin-bottom: 1rem; /* spacing below */
+} /* end .section-subtitle */
+
+.date-selector { /* container for date picker */
+  margin-bottom: 1.5rem; /* spacing */
+} /* end .date-selector */
+
+.date-input { /* date input styling */
+  background: rgba(255, 255, 255, 0.08); /* translucent bg */
+  border: 1px solid rgba(199, 159, 94, 0.3); /* warm border */
+  color: #fff; /* input text color */
+  padding: 0.75rem 1rem; /* inner padding */
+  border-radius: 8px; /* rounded corners */
+  font-size: 1rem; /* font size */
+  font-family: 'Poppins', sans-serif; /* keep form consistent */
+  width: 100%; /* full width by default */
+  max-width: 300px; /* limit width on larger screens */
+} /* end .date-input */
+
+.date-input::-webkit-calendar-picker-indicator { /* calendar icon styling (WebKit) */
+  filter: invert(1); /* invert so icon is visible on dark bg */
+  cursor: pointer; /* pointer when hovering indicator */
+} /* end calendar indicator */
+
+/* === Custom Date Picker Modal (fixed year 2026) === */
+.date-picker-trigger {
+  width: 100%;
+  max-width: 300px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(199,159,94,0.3);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: transform 0.15s, border-color 0.15s, background 0.15s;
+}
+.date-picker-trigger:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(199,159,94,0.5);
+}
+.date-picker-trigger:focus { outline: none; }
+.date-picker-trigger-icon { opacity: 0.95; }
+.date-picker-display-text {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.booking-date-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.booking-date-modal-backdrop.open { display: flex; }
+
+.booking-date-modal {
+  width: min(440px, 96vw);
+  background: #171821;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.7);
+  /* Must be visible so the native <select> dropdown isn't clipped. */
+  overflow: visible;
+}
+.booking-date-modal-title {
+  padding: 18px 20px 12px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.92);
+  font-size: 1.05rem;
+}
+.booking-date-modal-body {
+  padding: 0 20px 18px;
+}
+
+.booking-date-input-display {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 800;
+  font-size: 1.02rem;
+  margin-bottom: 12px;
+}
+
+.booking-date-month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.booking-date-nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.9);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: transform 0.15s, border-color 0.15s, background 0.15s;
+}
+.booking-date-nav-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(47,128,255,0.45);
+  background: rgba(47,128,255,0.12);
+}
+.booking-date-month-select-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10006;
+}
+.booking-date-month-select {
+  width: 100%;
+  max-width: 240px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 800;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  z-index: 10007;
+  appearance: auto;
+  -webkit-appearance: menulist;
+}
+
+.booking-date-dow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 0 4px;
+  margin-bottom: 10px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.booking-date-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 0 4px;
+}
+.booking-date-day {
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.85);
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  transition: transform 0.12s, background 0.12s, border-color 0.12s;
+}
+.booking-date-day:hover {
+  transform: translateY(-1px);
+  background: rgba(47,128,255,0.1);
+  border-color: rgba(47,128,255,0.35);
+}
+.booking-date-day.selected {
+  border: 2px solid #2f80ff;
+  background: rgba(47,128,255,0.18);
+  box-shadow: 0 0 0 4px rgba(47,128,255,0.12) inset;
+  color: #fff;
+}
+.booking-date-day.is-empty {
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: default;
+}
+
+.booking-date-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+.booking-date-clear-btn {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.75);
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.booking-date-clear-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.22);
+}
+.booking-date-seats-hint {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.7);
+}
+
+.schedule-cards { /* grid of schedule option cards */
+  display: grid; /* grid layout */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
+  gap: 1.25rem; /* grid gap */
+  margin-bottom: 2rem; /* spacing below */
+} /* end .schedule-cards */
+
+/* Desktop (1400px and above) - 3 columns */
+@media (min-width: 1400px) { /* large screens */
+  .schedule-cards {
+    grid-template-columns: repeat(3, 1fr); /* keep 3 columns */
+    gap: 1.5rem; /* slightly larger gap */
+  }
+} /* end desktop media query */
+
+/* Laptop (1024px - 1399px) - 3 columns */
+@media (min-width: 1024px) and (max-width: 1399px) { /* medium-large screens */
+  .schedule-cards {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 1.25rem; /* default gap */
+  }
+} /* end laptop media query */
+
+/* Tablet (768px - 1023px) - 2 columns */
+@media (min-width: 768px) and (max-width: 1023px) { /* tablets */
+  .schedule-cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    gap: 1rem; /* smaller gap */
+  }
+} /* end tablet media query */
+
+.schedule-card { /* individual schedule option card */
+  background: rgba(40, 40, 40, 0.8); /* dark panel */
+  border: 2px solid rgba(199, 159, 94, 0.3); /* warm border */
+  border-radius: 12px; /* rounded corners */
+  padding: 1.5rem; /* inner spacing */
+  cursor: pointer; /* clickable */
+  transition: all 0.3s ease; /* hover transition */
+} /* end .schedule-card */
+
+.schedule-card:hover { /* hover state for schedule card */
+  background: rgba(50, 50, 50, 0.9); /* slightly lighter */
+  border-color: rgba(199, 159, 94, 0.5); /* brighter border */
+  transform: translateY(-4px); /* lift effect */
+} /* end .schedule-card:hover */
+
+.schedule-card.selected { /* selected schedule visual */
+  background: rgba(199, 159, 94, 0.2); /* light gold background */
+  border-color: #c79f5e; /* accent border */
+  box-shadow: 0 0 20px rgba(199, 159, 94, 0.3); /* glow */
+} /* end .schedule-card.selected */
+
+/* Addon image */ /* image used for extras/offer thumbnails */
+.addon-thumb {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+} /* end .addon-thumb */
+
+/* Addons Foods / Drinks sections - large cards like original 2-item layout */
+.addons-section { margin-bottom: 1rem; }
+.addons-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+/* Bigger addon cards: more padding and spacing like when only popcorn + drink */
+#addons-list .addons-grid .schedule-card {
+  padding: 1.5rem;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  /* Keep food/drink tiles visually symmetrical */
+  min-height: 410px;
+}
+
+#addons-list .addons-grid .schedule-seats {
+  margin-top: auto;
+}
+.addons-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(199,159,94,0.4), transparent);
+  margin: 1.25rem 0;
+}
+
+.schedule-time { /* showtime text */
+  font-size: 1.5rem; /* larger time */
+  font-weight: 600; /* semibold */
+  color: #c79f5e; /* accent color */
+  margin-bottom: 0.5rem; /* spacing below */
+} /* end .schedule-time */
+
+.schedule-cinema { /* cinema name */
+  font-size: 1.1rem; /* medium size */
+  color: #fff; /* white text */
+  margin-bottom: 0.75rem; /* spacing */
+} /* end .schedule-cinema */
+
+.schedule-seats { /* seats availability row */
+  display: flex; /* horizontal layout */
+  align-items: center; /* vertical alignment */
+  gap: 0.5rem; /* spacing between items */
+  color: rgba(255, 255, 255, 0.7); /* muted white */
+  font-size: 0.9rem; /* small size */
+} /* end .schedule-seats */
+
+/* === Quantity Section === */ /* select number of tickets */
+.quantity-section { /* wrapper for quantity controls */
+  text-align: center; /* center align content */
+  padding: 2rem 0; /* vertical padding */
+} /* end .quantity-section */
+
+.quantity-selector { /* + / - buttons and display */
+  display: flex; /* horizontal layout */
+  align-items: center; /* vertical center */
+  justify-content: center; /* center horizontally */
+  gap: 2rem; /* spacing */
+  margin: 2rem 0; /* vertical spacing */
+} /* end .quantity-selector */
+
+.quantity-btn { /* round increment/decrement buttons */
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c79f5e, #a67c42);
+  color: #fff;
+  border: none;
+  font-size: 1.35rem;
+  line-height: 1;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+} /* end .quantity-btn */
+
+.quantity-btn:hover { /* hover for round buttons */
+  background: linear-gradient(135deg, #d4ae6f, #b88b52); /* lighter gradient */
+  transform: scale(1.1); /* grow slightly */
+} /* end .quantity-btn:hover */
+
+.quantity-btn:disabled { /* disabled state */
+  opacity: 0.5; /* faded */
+  cursor: not-allowed; /* no pointer */
+  transform: scale(1); /* no scale */
+} /* end disabled */
+
+.quantity-display { /* large number display */
+  font-size: 3rem; /* prominent */
+  font-weight: 600; /* bold */
+  color: #c79f5e; /* accent */
+  min-width: 80px; /* reserve width */
+  text-align: center; /* center number */
+} /* end .quantity-display */
+
+.quantity-note { /* small helper text */
+  color: rgba(255, 255, 255, 0.6); /* muted */
+  font-size: 0.9rem; /* small */
+} /* end .quantity-note */
+
+/* === Seats Section === */ /* seat selection grid and legend */
+.seats-section { /* wrapper for seating controls */
+  padding: 1rem 0; /* vertical padding */
+} /* end .seats-section */
+
+.screen-label { /* label showing 'SCREEN' above seats */
+  background: linear-gradient(to bottom, #c79f5e 0%, transparent 100%); /* gold gradient top */
+  text-align: center; /* center text */
+  padding: 0.75rem; /* inner padding */
+  margin-bottom: 2rem; /* spacing below */
+  border-radius: 8px 8px 50% 50%; /* rounded top and half-circle bottom */
+  color: #111; /* dark text on gold */
+  font-weight: 600; /* semi-bold */
+  letter-spacing: 2px; /* spaced letters */
+} /* end .screen-label */
+
+.seats-grid { /* seating grid layout */
+  display: grid; /* grid for seats */
+  /* 5 columns, a vertical aisle, then 5 columns */
+  grid-template-columns: repeat(5, 1fr) clamp(8px, 2vw, 18px) repeat(5, 1fr);
+  gap: clamp(4px, 1vw, 8px); /* fluid gap */
+  max-width: 600px; /* limit grid width */
+  margin: 0 auto 2rem; /* center and add bottom margin */
+  padding: clamp(0.5rem, 2vw, 1rem); /* inner padding */
+} /* end .seats-grid */
+
+/* Visual aisles */
+.aisle-vertical {
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 2px dashed rgba(255, 255, 255, 0.25);
+  border-right: 2px dashed rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+.aisle-horizontal {
+  grid-column: 1 / -1;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 2px dashed rgba(255, 255, 255, 0.25);
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+.seat { /* individual seat box */
+  aspect-ratio: 1; /* keep square */
+  border-radius: clamp(4px, 1vw, 8px) clamp(4px, 1vw, 8px) 2px 2px; /* fluid corners */
+  cursor: pointer; /* clickable */
+  transition: all 0.2s ease; /* quick hover effects */
+  display: flex; /* align label inside */
+  align-items: center; /* center content */
+  justify-content: center; /* center content */
+  font-size: clamp(0.5rem, 1.5vw, 0.7rem); /* fluid font size */
+  color: rgba(255, 255, 255, 0.8); /* seat text color */
+} /* end .seat */
+
+.seat.available { /* available seat state */
+  background: rgba(255, 255, 255, 0.2); /* light bg */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* subtle border */
+} /* end .seat.available */
+
+.seat.available:hover { /* hover for available seats */
+  background: rgba(199, 159, 94, 0.4); /* highlight on hover */
+  transform: scale(1.1); /* enlarge slightly */
+} /* end hover */
+
+.seat.reserved { /* reserved/unavailable seat */
+  background: rgba(255, 255, 255, 0.5); /* lighter to show taken */
+  cursor: not-allowed; /* not clickable */
+} /* end .seat.reserved */
+
+.seat.selected { /* selected seat visual */
+  background: linear-gradient(135deg, #c79f5e, #a67c42); /* gold gradient */
+  border: 2px solid #e0b96f; /* highlight border */
+  transform: scale(1.05); /* subtle emphasis */
+} /* end .seat.selected */
+
+.seat-legend { /* legend showing seat types */
+  display: flex; /* horizontal */
+  justify-content: center; /* center legend */
+  gap: 2rem; /* spacing between legend items */
+  margin-bottom: 2rem; /* spacing below */
+} /* end .seat-legend */
+
+.legend-item { /* each legend item (box + text) */
+  display: flex; /* inline flex */
+  align-items: center; /* vertical center */
+  gap: 0.5rem; /* small gap */
+  color: rgba(255, 255, 255, 0.8); /* text color */
+} /* end .legend-item */
+
+.seat-demo { /* small seat sample box used in legend */
+  width: 24px; /* box width */
+  height: 24px; /* box height */
+  border-radius: 4px 4px 2px 2px; /* match seat corners */
+} /* end .seat-demo */
+
+.seat-demo.available { /* legend: available */
+  background: rgba(255, 255, 255, 0.2); /* matched with seat.available */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* border */
+} /* end demo available */
+
+.seat-demo.reserved { /* legend: reserved */
+  background: rgba(255, 255, 255, 0.5); /* reserved demo */
+} /* end demo reserved */
+
+.seat-demo.selected { /* legend: selected */
+  background: linear-gradient(135deg, #c79f5e, #a67c42); /* selected demo */
+} /* end demo selected */
+
+.selected-seats-info { /* box showing chosen seats & totals */
+  text-align: center; /* center text */
+  padding: 1.5rem; /* inner padding */
+  background: rgba(40, 40, 40, 0.6); /* panel bg */
+  border-radius: 8px; /* rounded corners */
+} /* end .selected-seats-info */
+
+.selected-seats-info p { /* paragraphs inside selected seats info */
+  margin: 0.5rem 0; /* vertical spacing */
+  font-size: 1.1rem; /* readable size */
+} /* end .selected-seats-info p */
+
+.price-display { /* total price display */
+  color: #c79f5e; /* accent color */
+  font-size: 1.5rem !important; /* ensure size */
+  margin-top: 1rem !important; /* spacing above */
+} /* end .price-display */
+
+/* === Payment Section === */ /* form for payment and contact details */
+.payment-section { /* payment area spacing */
+  margin-top: 2rem; /* spacing above */
+} /* end .payment-section */
+
+.payment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.payment-provider-card {
+  background: rgba(34, 34, 34, 0.95);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-provider-card img {
+  max-height: 32px;
+  max-width: 100%;
+  display: block;
+}
+
+.payment-provider-card:hover {
+  border-color: #c79f5e;
+  box-shadow: 0 0 12px rgba(199, 159, 94, 0.35);
+  transform: translateY(-2px);
+}
+
+.payment-provider-card.selected {
+  border-color: #c79f5e;
+  background: rgba(199, 159, 94, 0.16);
+}
+
+.vehicle-option.selected {
+  border-color: #c79f5e;
+  background: rgba(199, 159, 94, 0.2);
+  color: #fff;
+}
+
+.payment-details-panel {
+  margin-top: 1.5rem;
+  display: none;
+}
+
+.payment-details-panel.visible {
+  display: block;
+}
+
+.form-group { /* standard form group spacing */
+  margin-bottom: 1.5rem; /* spacing between inputs */
+} /* end .form-group */
+
+.form-group label { /* label styling */
+  display: block; /* stack label above input */
+  margin-bottom: 0.5rem; /* small gap to input */
+  color: rgba(255, 255, 255, 0.9); /* almost white */
+  font-weight: 500; /* medium weight */
+} /* end label */
+
+.form-input { /* input fields */
+  width: 100%; /* full width */
+  padding: 0.75rem 1rem; /* inner padding */
+  background: rgba(255, 255, 255, 0.08); /* translucent bg */
+  border: 1px solid rgba(199, 159, 94, 0.3); /* warm border */
+  border-radius: 8px; /* rounded */
+  color: #fff; /* white text */
+  font-size: 1rem; /* comfortable size */
+  font-family: 'Poppins', sans-serif; /* match site font */
+  transition: border-color 0.3s ease; /* focus transition */
+  box-sizing: border-box; /* consistent sizing */
+  min-height: 46px; /* consistent control height */
+  -webkit-appearance: none; /* normalize select/input look */
+  -moz-appearance: none;
+  appearance: none;
+} /* end .form-input */
+
+.form-input:focus { /* focus state */
+  outline: none; /* remove default outline */
+  border-color: #c79f5e; /* accent border on focus */
+} /* end focus */
+
+.form-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Payment / discount reveal animation */
+.payment-reveal {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease-out, opacity 0.3s ease-out, margin 0.3s ease-out;
+}
+.payment-reveal.reveal-open {
+  max-height: 400px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+/* Make select dropdowns readable and consistent */
+select.form-input { /* explicit select styling */
+  background: rgba(34, 34, 34, 0.95);
+  color: #fff;
+  border: 1px solid rgba(199, 159, 94, 0.3);
+}
+
+select.form-input option { /* dropdown list items */
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* Placeholder color for readability on dark bg */
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Ensure symmetrical spacing for grouped payment fields */
+#card-fields .form-group,
+#ewallet-fields .form-group {
+  margin-bottom: 1.25rem;
+}
+
+/* Ensure symmetrical two-column rows in payment section */
+.payment-section .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* equal columns */
+  gap: 1rem;
+}
+
+/* Make all form groups stretch uniformly */
+.payment-section .form-group {
+  width: 100%;
+}
+
+.payment-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.payment-layout .booking-summary,
+.payment-layout .payment-section {
+  margin-bottom: 0;
+}
+
+.payment-layout .booking-summary {
+  flex: 1 1 320px;
+}
+
+.payment-layout .payment-section {
+  flex: 1.6 1 420px;
+}
+
+@media (max-width: 992px) {
+  .payment-layout {
+    flex-direction: column;
+  }
+
+  .payment-layout .booking-summary,
+  .payment-layout .payment-section {
+    flex: 1 1 100%;
+  }
+}
+
+.form-row { /* two-column layout for some inputs */
+  display: grid; /* grid layout */
+  grid-template-columns: 2fr 1fr; /* wider left, smaller right */
+  gap: 1rem; /* spacing between columns */
+} /* end .form-row */
+
+/* === Booking Summary === */ /* small summary and detailed summary styles */
+.booking-summary-small { /* compact summary box */
+  background: rgba(40, 40, 40, 0.6); /* translucent panel */
+  padding: 1rem; /* inner padding */
+  border-radius: 8px; /* rounded corners */
+  margin-bottom: 2rem; /* spacing below */
+  border-left: 3px solid #c79f5e; /* left accent bar */
+} /* end .booking-summary-small */
+
+.booking-summary-small p { /* paragraphs inside small summary */
+  margin: 0.5rem 0; /* vertical margins */
+  color: rgba(255, 255, 255, 0.9); /* near-white */
+} /* end p */
+
+.booking-summary { /* full booking summary panel */
+  background: rgba(40, 40, 40, 0.8); /* darker panel */
+  padding: 1.5rem; /* inner padding */
+  border-radius: 12px; /* rounder corners */
+  margin-bottom: 2rem; /* spacing below */
+  border: 1px solid rgba(199, 159, 94, 0.2); /* subtle border */
+} /* end .booking-summary */
+
+.booking-summary h3 { /* heading inside summary */
+  color: #c79f5e; /* accent */
+  margin-top: 0; /* remove top margin */
+  margin-bottom: 1rem; /* spacing below */
+} /* end h3 */
+
+.summary-details p { /* details list inside summary */
+  margin: 0.75rem 0; /* spacing between lines */
+  color: rgba(255, 255, 255, 0.9); /* near-white */
+} /* end .summary-details p */
+
+.summary-total { /* total row style */
+  margin-top: 1.5rem !important; /* ensure spacing */
+  padding-top: 1rem; /* separation from details */
+  border-top: 1px solid rgba(199, 159, 94, 0.2); /* top divider */
+  font-size: 1.3rem; /* slightly larger */
+  color: #c79f5e !important; /* accent color */
+} /* end .summary-total */
+
+/* === Buttons === */ /* primary/secondary button styles */
+.btn { /* base button */
+  padding: 0.75rem 1.5rem; /* inner padding */
+  border: none; /* remove default */
+  border-radius: 8px; /* rounded corners */
+  font-size: 0.95rem; /* base font size */
+  font-weight: 600; /* semi-bold */
+  cursor: pointer; /* pointer on hover */
+  transition: all 0.3s ease; /* smooth transitions */
+  font-family: 'Poppins', sans-serif; /* match site font */
+} /* end .btn */
+
+.btn-primary { /* primary action button */
+  background: linear-gradient(135deg, #c79f5e, #a67c42); /* gold gradient */
+  color: #fff; /* white text */
+} /* end .btn-primary */
+
+.btn-primary:hover:not(:disabled) { /* hover for primary when enabled */
+  background: linear-gradient(135deg, #d4ae6f, #b88b52); /* lighter gradient */
+  transform: translateY(-2px); /* lift */
+  box-shadow: 0 4px 16px rgba(199, 159, 94, 0.4); /* shadow */
+} /* end hover */
+
+.btn-primary:disabled { /* disabled primary */
+  opacity: 0.5; /* faded */
+  cursor: not-allowed; /* no pointer */
+  transform: none; /* no transform */
+  pointer-events: none; /* prevent clicks */
+} /* end disabled */
+
+.btn-primary:not(:disabled) { /* enabled primary button */
+  opacity: 1 !important; /* ensure full opacity */
+  cursor: pointer !important; /* ensure pointer cursor */
+  pointer-events: auto !important; /* ensure clicks work */
+} /* end enabled */
+
+.btn-secondary { /* secondary button style */
+  background: rgba(255, 255, 255, 0.08); /* translucent */
+  color: #fff; /* white text */
+  border: 1px solid rgba(199, 159, 94, 0.3); /* border */
+} /* end .btn-secondary */
+
+.btn-secondary:hover { /* hover for secondary */
+  background: rgba(255, 255, 255, 0.12); /* slightly lighter */
+  border-color: rgba(199, 159, 94, 0.5); /* brighter border */
+} /* end hover */
+
+.btn-large { /* full-width large button */
+  width: 100%; /* full width */
+  padding: 1rem; /* bigger padding */
+  font-size: 1.1rem; /* larger text */
+} /* end .btn-large */
+
+.button-group { /* container for grouped buttons */
+  display: flex; /* horizontal */
+  gap: 1rem; /* spacing between */
+  margin-top: 2rem; /* spacing above */
+} /* end .button-group */
+
+.button-group .btn { /* make grouped buttons equal width */
+  flex: 1; /* each button takes equal space */
+} /* end grouped buttons */
+
+/* === Confirmation === */ /* final confirmation and receipt styling */
+.confirmation-card { /* centered confirmation panel */
+  background: rgba(20, 20, 20, 0.95); /* dark bg */
+  border: 1px solid rgba(199, 159, 94, 0.2); /* border */
+  border-radius: 16px; /* rounded */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); /* depth */
+  padding: 3rem 2rem; /* large padding */
+  text-align: center; /* center content */
+  max-width: 600px; /* width limit */
+  margin: 0 auto; /* center on page */
+} /* end .confirmation-card */
+
+.success-animation { /* wrapper for animation area */
+  margin-bottom: 2rem; /* spacing below */
+} /* end .success-animation */
+
+.success-icon { /* round success icon */
+  width: 80px; /* width */
+  height: 80px; /* height */
+  background: linear-gradient(135deg, #c79f5e, #a67c42); /* gold */
+  border-radius: 50%; /* circle */
+  display: flex; /* center icon */
+  align-items: center; /* vertical center */
+  justify-content: center; /* horizontal center */
+  font-size: 3rem; /* icon size */
+  color: #fff; /* icon color */
+  margin: 0 auto; /* center horizontally */
+  animation: scaleIn 0.5s ease; /* pop-in animation */
+} /* end .success-icon */
+
+@keyframes scaleIn { /* small pop-in animation */
+  from { /* start */
+    transform: scale(0); /* shrink */
+    opacity: 0; /* invisible */
+  } /* end from */
+  to { /* end */
+    transform: scale(1); /* normal size */
+    opacity: 1; /* visible */
+  } /* end to */
+} /* end @keyframes scaleIn */
+
+.confirmation-title { /* big title in confirmation */
+  font-size: 2.5rem; /* large */
+  color: #c79f5e; /* accent */
+  margin: 0 0 0.5rem 0; /* bottom spacing */
+} /* end .confirmation-title */
+
+.confirmation-subtitle { /* subtitle text */
+  color: rgba(255, 255, 255, 0.8); /* muted white */
+  font-size: 1.1rem; /* readable size */
+  margin-bottom: 2rem; /* spacing below */
+} /* end .confirmation-subtitle */
+
+/* === Receipt outer (black/dark area) === */
+.receipt-outer {
+  background: #0a0a0a;
+  border-radius: 16px;
+  padding: 2rem 1.5rem 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.receipt-banner-title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.35rem 0;
+}
+
+.receipt-banner-sub {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  margin: 0 0 1.5rem 0;
+}
+
+/* === White ticket body === */
+.ticket-receipt {
+  background: #fff;
+  color: #111;
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.25rem;
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: left;
+  min-height: 580px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.ticket-receipt-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.ticket-receipt-logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #111;
+  letter-spacing: 0.02em;
+}
+
+.ticket-receipt-checkin {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ticket-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #888;
+  display: block;
+}
+
+.ticket-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.ticket-checkin-code {
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+}
+
+.ticket-receipt-qr {
+  margin: 1rem 0 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ticket-receipt-qr #qr-code {
+  display: block;
+}
+
+.ticket-receipt-qr #qr-code img,
+.ticket-receipt-qr #qr-code canvas {
+  display: block;
+  max-width: 200px;
+  height: auto;
+}
+
+.ticket-receipt-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ticket-detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ticket-detail-row .ticket-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.receipt-discount-amount {
+  color: #0a7c42;
+}
+
+/* Perforation line (dashed with semicircle ends) */
+.ticket-receipt-perforation {
+  margin: 1.25rem 0 1rem;
+  height: 0;
+  border: none;
+  border-top: 2px dashed #ccc;
+  position: relative;
+}
+
+.ticket-receipt-perforation::before,
+.ticket-receipt-perforation::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #ccc;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.ticket-receipt-perforation::before {
+  left: -2px;
+  border-right: none;
+  background: #fff;
+}
+
+.ticket-receipt-perforation::after {
+  right: -2px;
+  border-left: none;
+  background: #fff;
+}
+
+/* Stub section */
+.ticket-receipt-stub {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.ticket-receipt-stub .stub-left,
+.ticket-receipt-stub .stub-right {
+  flex: 1;
+  min-width: 0;
+}
+
+.ticket-receipt-stub .stub-right {
+  text-align: right;
+}
+
+.ticket-receipt-stub .stub-value {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ticket-receipt-stub .stub-seats {
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+}
+
+.ticket-receipt-footer {
+  margin-top: 1.25rem;
+  padding-top: 0.75rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #111;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .receipt-outer {
+    padding: 1.25rem 1rem 1.5rem;
+  }
+  .receipt-banner-title {
+    font-size: 1.2rem;
+  }
+  .receipt-banner-sub {
+    font-size: 0.85rem;
+  }
+  .ticket-receipt {
+    padding: 1.25rem 1rem 1rem;
+    min-height: 520px;
+    max-width: 100%;
+  }
+  .ticket-receipt-qr #qr-code img,
+  .ticket-receipt-qr #qr-code canvas {
+    max-width: 180px;
+  }
+}
+
+/* Legacy receipt classes (if still used elsewhere) */
+.receipt-header { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 2px dashed rgba(199, 159, 94, 0.3); }
+.receipt-header h3 { color: #c79f5e; margin: 0 0 0.5rem 0; font-size: 1.8rem; }
+.receipt-number { color: rgba(255, 255, 255, 0.7); margin: 0; font-size: 0.9rem; }
+.receipt-qr { margin: 1.5rem 0; padding: 1rem; background: #fff; border-radius: 8px; display: inline-block; }
+#qr-code { display: block; }
+.receipt-details { text-align: left; margin-top: 1.5rem; padding-top: 1rem; border-top: 2px dashed rgba(199, 159, 94, 0.3); }
+.receipt-row { display: flex; justify-content: space-between; padding: 0.75rem 0; color: rgba(255, 255, 255, 0.9); }
+.receipt-row.total { border-top: 2px solid rgba(199, 159, 94, 0.3); margin-top: 1rem; padding-top: 1rem; font-size: 1.3rem; color: #c79f5e; font-weight: 600; }
+
+/* === Responsive === */
+/* Desktop - Large (1920px and above) */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1600px;
+  }
+  
+  .card {
+    padding: 3rem;
+  }
+  
+  .page-title {
+    font-size: 3rem;
+  }
+  
+  .schedule-cards {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* Desktop - Standard (1400px to 1919px) */
+@media (min-width: 1400px) and (max-width: 1919px) {
+  .container {
+    max-width: 1400px;
+  }
+  
+  .card {
+    padding: 2.5rem;
+  }
+  
+  .page-title {
+    font-size: 2.75rem;
+  }
+  
+  .schedule-cards {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.75rem;
+  }
+}
+
+/* Laptop - Large (1200px to 1399px) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .container {
+    max-width: 1200px;
+  }
+  
+  .card {
+    padding: 2rem;
+  }
+  
+  .page-title {
+    font-size: 2.5rem;
+  }
+  
+  .schedule-cards {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+/* Laptop - Standard (1024px to 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .container {
+    max-width: 1100px;
+  }
+  
+  .card {
+    padding: 2rem;
+  }
+  
+  .page-title {
+    font-size: 2.25rem;
+  }
+  
+  .schedule-cards {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+/* Tablet (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    max-width: 100%;
+    padding: 0 1.25rem;
+  }
+  
+  .card {
+    padding: 1.75rem;
+  }
+  
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .schedule-cards {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* Tablet: movie info stacks */
+@media (max-width: 1023px) {
+  .movie-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  .movie-poster-small {
+    width: 140px;
+    height: 200px;
+  }
+  .movie-details h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Mobile (below 768px) */
+@media (max-width: 767px) {
+  main {
+    padding-top: 120px;
+  }
+  .container {
+    padding: 0 1rem;
+  }
+  .page-title {
+    font-size: 1.5rem;
+  }
+  .movie-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .movie-poster-small {
+    width: 120px;
+    height: 170px;
+  }
+  .movie-details h2 {
+    font-size: 1.35rem;
+  }
+  .schedule-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .seats-grid {
+    gap: 6px;
+    padding: 0.5rem;
+    max-width: 100%;
+  }
+  .seat {
+    font-size: 0.6rem;
+  }
+  .seat-legend {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .quantity-selector {
+    gap: 1.25rem;
+  }
+  .quantity-display {
+    font-size: 2.25rem;
+    min-width: 60px;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .payment-section .form-row {
+    grid-template-columns: 1fr;
+  }
+  .button-group {
+    flex-direction: column;
+  }
+  .confirmation-card {
+    padding: 2rem 1rem;
+  }
+  .date-input {
+    max-width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .site-header .logo img {
+    height: 38px;
+  }
+}

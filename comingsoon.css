@@ -1,0 +1,121 @@
+/* === Container Grid Fix === */
+.movie-section, #container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: clamp(20px, 4vw, 60px);
+  justify-content: center;
+  align-items: start;
+  position: relative;
+  padding: clamp(60px, 10vh, 100px) clamp(15px, 3vw, 30px) 30px clamp(15px, 3vw, 30px);
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  color: #fff;
+  max-width: 1400px;
+  margin: 40px auto;
+}
+
+/* Specific cards inside */
+.poster-card {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  background: #111;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.poster-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.poster-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+.poster-card:hover img {
+  transform: scale(1.08);
+}
+
+.section-title {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 700;
+  color: #c79f5e;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Background */
+.has-background {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('background/newbackground.png') center/cover fixed no-repeat;
+  min-height: 100vh;
+}
+
+/* Main Content Padding */
+main {
+  padding-top: var(--header-height, 80px);
+  padding-bottom: 5rem;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 767px) {
+  .movie-section, #container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    padding: 60px 10px 20px 10px;
+    margin: 20px 10px;
+    border-radius: 15px;
+  }
+
+  .poster-card {
+    border-radius: 8px;
+  }
+
+  .overlay-content {
+    padding: 8px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .poster-title {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+
+  .poster-btn {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    width: 100%;
+    margin: 2px 0;
+  }
+}
+
+/* Ultra small phones */
+@media (max-width: 350px) {
+  .movie-section, #container {
+    grid-template-columns: 1fr;
+  }
+  .poster-card {
+    max-width: 200px;
+  }
+}
