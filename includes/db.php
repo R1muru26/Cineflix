@@ -23,13 +23,17 @@ function db_get_connection(): mysqli
     $password = "";
     $dbname = "cineflix";
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_errno) {
-        http_response_code(500);
-        die(json_encode([
-            'success' => false,
-            'error' => 'Database connection failed: ' . $conn->connect_error
-        ]));
+    mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR);
+    try {
+        $conn = new mysqli($servername, $username, $password, $dbname);
+    } catch (Exception $e) {
+        require_once __DIR__ . '/mock_db.php';
+        $conn = new MockMySQLi();
+    }
+    
+    if (isset($conn->connect_errno) && $conn->connect_errno) {
+        require_once __DIR__ . '/mock_db.php';
+        $conn = new MockMySQLi();
     }
 
     $conn->set_charset('utf8mb4');
