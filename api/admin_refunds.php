@@ -1,7 +1,5 @@
 <?php
 session_start();
-header('Content-Type: application/json');
-
 if (empty($_SESSION['is_admin'])) {
     http_response_code(403);
     echo json_encode(['success' => false, 'error' => 'Admin access required']);
@@ -15,6 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 require_once __DIR__ . '/../includes/db.php';
+header('Content-Type: application/json');
+
+
 
 $conn = db_get_connection();
 db_ensure_bookings_table($conn);

@@ -8,9 +8,10 @@
  *
  * External APIs: None. Reads from bookings table.
  */
+require_once __DIR__ . '/../includes/db.php';
 header('Content-Type: application/json');
 
-require_once __DIR__ . '/../includes/db.php';
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

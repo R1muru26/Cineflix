@@ -4,9 +4,9 @@
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
-}
-
 header('Content-Type: application/json');
+
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(405);

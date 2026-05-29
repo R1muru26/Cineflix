@@ -3,10 +3,11 @@
  * CineFlix Food Order Tracking API
  * GET ?orderId=FD... returns order status, progress stages, timer, and items
  */
+require_once __DIR__ . '/../includes/db.php';
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-require_once __DIR__ . '/../includes/db.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(405);

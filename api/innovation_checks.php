@@ -5,11 +5,12 @@
  */
 session_start();
 require_once __DIR__ . '/../includes/db.php';
+header('Content-Type: application/json');
+
 require_once __DIR__ . '/notifications.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Content-Type: application/json');
-    exit(json_encode(['success' => false, 'error' => 'Unauthorized']));
+        exit(json_encode(['success' => false, 'error' => 'Unauthorized']));
 }
 
 $userId = (int)$_SESSION['user_id'];
@@ -79,5 +80,4 @@ while ($row = $res->fetch_assoc()) {
     }
 }
 
-header('Content-Type: application/json');
 echo json_encode(['success' => true]);
