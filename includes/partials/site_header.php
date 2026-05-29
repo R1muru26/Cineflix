@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-if (!isset($conn) || !($conn instanceof mysqli)) {
+if (!isset($conn)) {
     throw new RuntimeException('site_header.php requires $conn');
 }
 

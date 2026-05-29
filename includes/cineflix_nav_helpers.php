@@ -8,7 +8,7 @@ declare(strict_types=1);
 /**
  * @return array{navProfilePic: string, navUsername: string}
  */
-function cineflix_nav_load_user(mysqli $conn): array
+function cineflix_nav_load_user($conn): array
 {
     $navProfilePic = (string)($_SESSION['profile_picture'] ?? '');
     $navUsername   = '';
@@ -85,7 +85,7 @@ function cineflix_nav_load_user(mysqli $conn): array
 /**
  * @return array{userInboxItems: list<array<string,mixed>>, userInboxUnread: int}
  */
-function cineflix_nav_load_inbox(mysqli $conn): array
+function cineflix_nav_load_inbox($conn): array
 {
     $userInboxItems = [];
     $userInboxUnread = 0;

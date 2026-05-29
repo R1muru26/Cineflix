@@ -11,10 +11,10 @@ if (empty($_SESSION['user_id'])) {
     $_SESSION['username'] = 'demouser';
 }
 
-function db_get_connection(): mysqli
+function db_get_connection()
 {
     static $conn = null;
-    if ($conn instanceof mysqli) {
+    if ($conn !== null) {
         return $conn;
     }
 
@@ -23,24 +23,22 @@ function db_get_connection(): mysqli
     $password = "";
     $dbname = "cineflix";
 
-    mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR);
+    mysqli_report(MYSQLI_REPORT_OFF);
     try {
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = @new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_errno) {
+            throw new Exception($conn->connect_error);
+        }
+        $conn->set_charset('utf8mb4');
     } catch (Exception $e) {
         require_once __DIR__ . '/mock_db.php';
         $conn = new MockMySQLi();
     }
-    
-    if (isset($conn->connect_errno) && $conn->connect_errno) {
-        require_once __DIR__ . '/mock_db.php';
-        $conn = new MockMySQLi();
-    }
 
-    $conn->set_charset('utf8mb4');
     return $conn;
 }
 
-function db_ensure_bookings_table(mysqli $conn): void
+function db_ensure_bookings_table($conn): void
 {
     $sql = "CREATE TABLE IF NOT EXISTS bookings (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -96,7 +94,7 @@ function db_ensure_bookings_table(mysqli $conn): void
     }
 }
 
-function db_ensure_parking_table(mysqli $conn): void
+function db_ensure_parking_table($conn): void
 {
     $sql = "CREATE TABLE IF NOT EXISTS parking_spaces (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -123,7 +121,7 @@ function db_ensure_parking_table(mysqli $conn): void
  * Assign an available parking space for online bookings. Returns parking_number or null.
  * Uses row-level lock to prevent duplicates.
  */
-function db_assign_parking(mysqli $conn, string $bookingId): ?string
+function db_assign_parking($conn, string $bookingId): ?string
 {
     db_ensure_parking_table($conn);
     $bookingIdEsc = $conn->real_escape_string($bookingId);
@@ -147,7 +145,7 @@ function db_assign_parking(mysqli $conn, string $bookingId): ?string
     return $parkingNumber;
 }
 
-function db_ensure_erd_tables(mysqli $conn): void
+function db_ensure_erd_tables($conn): void
 {
     $conn->query("SET FOREIGN_KEY_CHECKS = 0;");
     

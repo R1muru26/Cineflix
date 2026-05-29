@@ -68,7 +68,7 @@ if ($secCheck && (int)$secCheck->fetch_assoc()['cnt'] === 0) {
 }
 
 
-function fetch_single_value(mysqli $conn, string $sql, string $alias)
+function fetch_single_value($conn, string $sql, string $alias)
 {
     $result = $conn->query($sql);
     if (!$result) {

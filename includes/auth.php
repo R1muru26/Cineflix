@@ -63,7 +63,7 @@ function cineflix_clear_remember_cookie(): void
  * This is intentionally conservative and only restores normal customer users
  * (never admin or staff).
  */
-function cineflix_bootstrap_session_from_cookie(mysqli $conn): void
+function cineflix_bootstrap_session_from_cookie($conn): void
 {
     if (!empty($_SESSION['user_id'])) {
         return;
