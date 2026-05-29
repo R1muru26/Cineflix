@@ -3,6 +3,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// PORTFOLIO DEMO MODE: Auto-login
+if (empty($_SESSION['user_id'])) {
+    $_SESSION['user_id'] = 1;
+    $_SESSION['user_email'] = 'demo@portfolio.com';
+    $_SESSION['user_name'] = 'Portfolio Demo User';
+    $_SESSION['username'] = 'demouser';
+}
+
 function db_get_connection(): mysqli
 {
     static $conn = null;
