@@ -6,11 +6,16 @@ class MockMySQLiStatement {
     public $error = '';
     public $errno = 0;
     private $result = null;
+    private $query = '';
+
+    public function __construct($query = '') {
+        $this->query = $query;
+    }
 
     public function bind_param($types, &...$vars) { return true; }
     public function execute() { return true; }
     public function close() { return true; }
-    public function get_result() { return new MockMySQLiResult(''); }
+    public function get_result() { return new MockMySQLiResult($this->query); }
     public function fetch_assoc() { return null; }
     public function store_result() { return true; }
     public function num_rows() { return 0; }
@@ -53,8 +58,8 @@ class MockMySQLiResult {
             } elseif (strpos($q, 'from customeruser') !== false) {
                 $this->data = [['CustomerID' => 1, 'Name' => 'Demo User', 'Email' => 'demo@cineflix.com', 'Username' => 'demouser', 'PhoneNo' => '09123456789', 'profile_picture' => null]];
             } elseif (strpos($q, 'information_schema') !== false) {
-                // Return a count=1 so code thinks columns exist
-                $this->data = [['cnt' => 1, 'COUNT(*)' => 1, 'COLUMN_NAME' => 'id']];
+                // Return a count=1 so code thinks columns exist, and provide a dummy table name
+                $this->data = [['cnt' => 1, 'COUNT(*)' => 1, 'COLUMN_NAME' => 'id', 'TABLE_NAME' => 'customeruser']];
             } elseif (strpos($q, 'from food_orders') !== false) {
                 $this->data = [];
             } else {
@@ -97,7 +102,7 @@ class MockMySQLi {
     }
 
     public function prepare($query) {
-        return new MockMySQLiStatement();
+        return new MockMySQLiStatement($query);
     }
 
     public function real_escape_string($string) {
